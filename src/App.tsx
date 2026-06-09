@@ -100,8 +100,9 @@ function MainAppShell() {
             className="flex items-center gap-2 outline-none hover:opacity-90 transition-all font-sans"
             aria-label="Logo and go home"
           >
+
             <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold">
-              C
+              <Leaf className="w-4 h-4 text-white" />
             </div>
             <span className="text-lg font-semibold tracking-tight text-slate-800">CarbonWise</span>
           </button>
