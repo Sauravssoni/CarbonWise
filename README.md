@@ -1,6 +1,6 @@
 # CarbonWise 🚀🌱
 
-**CarbonWise** is a high-fidelity, educational carbon footprint awareness and tracking platform built using React, Vite, Express, and TypeScript. It is designed to help individuals understand, track, and reduce their approximate carbon footprint through transparent, deterministic calculations and personalized generative AI insights with absolute privacy.
+**CarbonWise** is a high-fidelity, educational carbon footprint awareness and tracking platform built using React, Vite, Express, and TypeScript. It is designed to help individuals understand, track, and reduce their approximate carbon footprint through transparent, deterministic calculations and personalized generative AI insights with privacy-first, device-local storage.
 
 ---
 
@@ -11,12 +11,12 @@
 * **Approach**:
   1. **User Lifestyle Check**: Complete a brief, structured form covering transport, home energy, food diet, and goods consumption.
   2. **Educational Estimation**: Estimates are calculated across the four pillars using standard baseline coefficients.
-  3. **Visual Analytics**: Interactive breakdowns identify the biggest emission driver and show relatable equivalents (e.g., smartphone charges, trees planted).
+  3. **Visual Analytics**: Interactive breakdowns identify the biggest emission driver and show relatable equivalents (e.g., smartphone charges, tree-growth equivalents).
   4. **Actionable Commitments**: Generates a custom weekly plan with green action items filtered by user effort commitment levels (Easy, Balanced, Aggressive).
   5. **Durable Local Privacy**: Progress is tracked entirely on-device without account creation or remote database risk.
   6. **Optional Server-Side AI**: Server-side Gemini integration provides customized insights when enabled, falling back gracefully to local deterministic insight if the key is missing or calls fail.
 * **Logic Flow**:
-  - **Inbound Data Verification**: `Zod` schemas validate telemetry inputs.
+  - **Inbound Data Verification**: `Zod` schemas validate lifestyle inputs.
   - **Emission Engine**: Pure functions calculate daily/weekly/monthly values.
   - **Translation Engine**: Translates raw carbon metrics into relatable equivalents.
   - **Action Recommendations**: Ranks next steps dynamically based on effort levels and the user's primary emission driver.
@@ -25,7 +25,7 @@
 * **Assumptions**:
   - Educational and approximate estimates, not formal greenhouse gas accounting or compliance-ready auditing.
   - No remote database is utilized because CarbonWise does not collect accounts, emails, names, addresses, or precise location data. User check-ins and completed actions stay on the device.
-  - Gemini API key is optional; fallback mode ensures 100% app availability.
+  - Gemini API key is optional; fallback mode keeps the core app experience functional without an AI key.
 
 ---
 
