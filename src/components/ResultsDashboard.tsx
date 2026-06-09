@@ -9,7 +9,6 @@ import ReductionPlan from './results/ReductionPlan';
 import ImpactTranslator from './results/ImpactTranslator';
 import ProgressDashboard from './results/ProgressDashboard';
 import CalculationTransparency from './results/CalculationTransparency';
-import { ToastProvider, useToast } from './ToastProvider';
 import { Sparkles, ArrowLeft, RefreshCw } from 'lucide-react';
 
 interface ResultsDashboardProps {
@@ -18,6 +17,35 @@ interface ResultsDashboardProps {
   onNewCheckIn: () => void;
   onRefreshHistory: () => void;
   localHistory: LocalHistory;
+}
+
+function getLocalDeterministicInsight(input: FootprintInput, result: CarbonResult): AIResponse {
+  const driver = result.biggestImpactDriver;
+  if (driver === 'transport') {
+    return {
+      personalInsight: `Your transport choices represent your biggest leverage point, driven by a travel total of ${input.distancePerDayKm || 0} km/day.`,
+      motivationalNudge: `Every active carbon-free trip you take helps avoid harmful greenhouse emissions. Small actions build sustainable compound savings!`,
+      customAction: `Try carpooling or taking bus/metro transit for your primary commute on 2 days this week.`,
+    };
+  } else if (driver === 'energy') {
+    return {
+      personalInsight: `Home energy utility usage (${input.electricityKwhMonthly || 0} kWh) partitioned per capita represents your biggest footprint component.`,
+      motivationalNudge: `Trimming standby draws and keeping cooling efficiency high protects both our climate and household finances.`,
+      customAction: `Reduce home AC use by one hour and wash your next batch of laundry in cold water.`,
+    };
+  } else if (driver === 'consumption') {
+    return {
+      personalInsight: `Manufacturing and shipping your monthly deliveries and clothing represents a heavy pre-consumer carbon footprint.`,
+      motivationalNudge: `Repairing and consolidating orders directly avoids energy-intensive manufacturing cycles. Repair first, purchase second!`,
+      customAction: `Postpone buying any non-urgent retail apparel and combine your next online orders into one batch delivery limit.`,
+    };
+  } else {
+    return {
+      personalInsight: `Your nutrition style (${input.dietType}) and eating cadence are your principal footprint contributors.`,
+      motivationalNudge: `Plant-forward recipes use a fraction of the land, water, and resources of conventional ingredients. Good cooking, good impact.`,
+      customAction: `Swap meat for a completely vegetable-forward dinner on three days this week.`,
+    };
+  }
 }
 
 export default function ResultsDashboard({
@@ -29,7 +57,6 @@ export default function ResultsDashboard({
 }: ResultsDashboardProps) {
   const [aiInsight, setAiInsight] = useState<AIResponse & { source?: string } | null>(null);
   const [loadingInsight, setLoadingInsight] = useState<boolean>(false);
-  const { showToast } = useToast();
 
   useEffect(() => {
     async function loadSpeechInsight() {
@@ -49,21 +76,28 @@ export default function ResultsDashboard({
             personalInsight: data.personalInsight,
             motivationalNudge: data.motivationalNudge,
             customAction: data.customAction,
-            source: data.source,
+            source: data.source || 'gemini',
           });
         } else {
-          const errData = await response.json().catch(() => ({}));
-          showToast(errData.message || 'Could not fetch personalized AI insights.', 'error');
+          const localData = getLocalDeterministicInsight(input, result);
+          setAiInsight({
+            ...localData,
+            source: 'deterministic',
+          });
         }
       } catch (err) {
-        showToast('Network issue: falling back to local deterministic insights.', 'info');
+        const localData = getLocalDeterministicInsight(input, result);
+        setAiInsight({
+          ...localData,
+          source: 'deterministic',
+        });
       } finally {
         setLoadingInsight(false);
       }
     }
 
     loadSpeechInsight();
-  }, [input, showToast]);
+  }, [input, result]);
 
   return (
     <div className="space-y-6 select-none animate-fade-in">
@@ -113,13 +147,18 @@ export default function ResultsDashboard({
             {aiInsight.customAction && (
               <div className="pt-2 flex flex-wrap gap-2 items-center">
                 <span className="text-[9px] font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-900 px-2 py-0.5 rounded uppercase tracking-wider select-none">
-                  AI Task Suggestion
+                  Task Suggestion
                 </span>
                 <span className="text-xs font-semibold text-slate-200">"{aiInsight.customAction}"</span>
               </div>
             )}
+            {aiInsight.source !== 'gemini' && (
+              <p className="text-[10px] text-slate-400 italic">
+                CarbonWise generated this using transparent local rules, so your results still work without an AI key.
+              </p>
+            )}
             <div className="flex justify-end pt-1 text-[8px] text-slate-500 uppercase tracking-wider select-none">
-              Generated via: <span className="font-bold text-slate-400 ml-1">{aiInsight.source || 'Standard Database'}</span>
+              {aiInsight.source === 'gemini' ? 'AI-enhanced insight' : 'Local deterministic insight'}
             </div>
           </div>
         ) : (
