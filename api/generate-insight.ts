@@ -38,7 +38,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // 2. Extract IP and verify rate limit
-  const ip = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress || 'unknown';
+  const ip = (req.headers['x-forwarded-for'] as string) || (req.socket?.remoteAddress as string) || 'unknown';
   if (!checkRateLimit(ip)) {
     return res.status(429).json({
       error: 'Too many requests. Please wait before trying again.',
