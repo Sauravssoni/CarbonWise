@@ -3,7 +3,7 @@
  */
 
 import { GoogleGenAI, Type } from '@google/genai';
-import { FootprintInput, CarbonResult, AIResponse } from '../types';
+import type { FootprintInput, CarbonResult, AIResponse } from '../types';
 
 // Deterministic engine fallback
 export function getDeterministicInsight(input: FootprintInput, result: CarbonResult): AIResponse {

@@ -2,7 +2,7 @@
  * CarbonWise - Deterministic Carbon Engine
  */
 
-import { FootprintInput, CarbonResult, CategoryBreakdown, CategoryPercentages } from '../types';
+import type { FootprintInput, CarbonResult, CategoryBreakdown, CategoryPercentages } from '../types';
 import {
   EMISSION_FACTORS_TRANSPORT,
   EMISSION_FACTOR_FLIGHT,

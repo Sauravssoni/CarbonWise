@@ -2,7 +2,7 @@
  * CarbonWise - Safe Client-Side LocalStorage Persistence
  */
 
-import { CheckInRecord, FootprintInput, CarbonResult, LocalHistory } from '../types';
+import type { CheckInRecord, FootprintInput, CarbonResult, LocalHistory } from '../types';
 
 const STORAGE_KEY = 'carbonwise_state_v1';
 

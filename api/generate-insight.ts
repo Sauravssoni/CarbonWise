@@ -3,7 +3,7 @@ import { FootprintSchema } from '../src/lib/validation';
 import { calculateFootprint } from '../src/lib/carbon-engine';
 import { getAiInsight } from '../src/lib/ai';
 import { sanitizeString } from '../src/lib/sanitize';
-import { FootprintInput } from '../src/types';
+import type { FootprintInput } from '../src/types';
 
 // Best-effort in-memory rate limiter for serverless environment
 const ipCache = new Map<string, { count: number; resetTime: number }>();
