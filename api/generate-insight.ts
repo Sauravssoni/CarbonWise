@@ -25,27 +25,27 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Set security headers
-  res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
-  res.setHeader("X-Frame-Options", "DENY");
-
-  // 1. Only allow POST
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method not allowed. Use POST.' });
-  }
-
-  // 2. Extract IP and verify rate limit
-  const ip = (req.headers['x-forwarded-for'] as string) || (req.socket?.remoteAddress as string) || 'unknown';
-  if (!checkRateLimit(ip)) {
-    return res.status(429).json({
-      error: 'Too many requests. Please wait before trying again.',
-    });
-  }
-
   try {
+    // Set security headers
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    res.setHeader("X-Frame-Options", "DENY");
+
+    // 1. Only allow POST
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', 'POST');
+      return res.status(405).json({ error: 'Method not allowed. Use POST.' });
+    }
+
+    // 2. Extract IP and verify rate limit
+    const ip = (req.headers['x-forwarded-for'] as string) || (req.socket?.remoteAddress as string) || 'unknown';
+    if (!checkRateLimit(ip)) {
+      return res.status(429).json({
+        error: 'Too many requests. Please wait before trying again.',
+      });
+    }
+
     const payload = req.body;
     
     // Check if body exists and is object
@@ -77,10 +77,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const aiResponse = await getAiInsight(input, result, apiKey);
 
     return res.status(200).json(aiResponse);
-  } catch (err) {
+  } catch (err: any) {
     // Prevent system stack trace leakage
     return res.status(500).json({
       error: 'Internal processing failure.',
+      msg: err?.message || String(err)
     });
   }
 }
