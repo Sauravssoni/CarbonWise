@@ -5,7 +5,6 @@
 
 import express from 'express';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import { FootprintSchema } from './src/lib/validation.js';
 import { calculateFootprint } from './src/lib/carbon-engine.js';
@@ -14,10 +13,6 @@ import { FootprintInput } from './src/types.js';
 import { rateLimiter, SECURITY_HEADERS } from './src/lib/security.js';
 import { sanitizeString } from './src/lib/sanitize.js';
 
-const resolvedFilename = typeof import.meta !== 'undefined' && import.meta && import.meta.url
-  ? fileURLToPath(import.meta.url)
-  : (typeof __filename !== 'undefined' ? __filename : '');
-const __dirname = path.dirname(resolvedFilename);
 
 const PORT = 3000;
 

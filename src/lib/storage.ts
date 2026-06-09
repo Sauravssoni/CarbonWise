@@ -2,7 +2,7 @@
  * CarbonWise - Safe Client-Side LocalStorage Persistence
  */
 
-import { CheckInRecord, FootprintInput, CarbonResult, LocalHistory, ActionItem } from '../types';
+import { CheckInRecord, FootprintInput, CarbonResult, LocalHistory } from '../types';
 
 const STORAGE_KEY = 'carbonwise_state_v1';
 
@@ -27,18 +27,7 @@ function getSafeLocalStorage(): Storage | null {
   }
 }
 
-function isStorageAvailable(): boolean {
-  try {
-    const storage = getSafeLocalStorage();
-    if (!storage) return false;
-    const key = '__cw_test__';
-    storage.setItem(key, key);
-    storage.removeItem(key);
-    return true;
-  } catch {
-    return false;
-  }
-}
+
 
 // In-Memory fallback for server environments or testing
 let memoryState: LocalHistory = { ...DEFAULT_STATE };
@@ -121,7 +110,7 @@ export function completeAction(actionId: string): void {
 }
 
 /**
- * Removes an completed action mark
+ * Removes a completed action mark
  */
 export function uncompleteAction(actionId: string): void {
   const history = getLocalHistory();

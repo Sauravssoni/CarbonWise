@@ -23,7 +23,8 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
   const currentFlights = data.flightsThisMonth ?? 0;
 
   return (
-    <div className="space-y-6">
+    <fieldset className="space-y-6 border-none p-0 m-0">
+      <legend className="sr-only">Step 1: Commuting and Transport</legend>
       <div>
         <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Step 1: Commuting & Transport</h3>
         <p className="text-slate-400 text-xs mt-1">
@@ -112,6 +113,7 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
             }`}
             role="switch"
             aria-checked={currentCarpool}
+            aria-label={`Carpool: ${currentCarpool ? 'enabled' : 'disabled'}`}
           >
             <div
               className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${
@@ -128,7 +130,7 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
           Flights Taken This Month <span className="text-slate-400 font-normal text-xs normal-case">(Optional)</span>
         </label>
         <div className="flex items-center gap-2.5 bg-slate-50 border border-slate-200 rounded-xl p-3 max-w-sm">
-          <Plane className="w-4 h-4 text-slate-400 shrink-0" />
+          <Plane className="w-4 h-4 text-slate-400 shrink-0" aria-hidden="true" />
           <input
             id="flights-input"
             type="number"
@@ -142,6 +144,6 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
         </div>
         <p className="text-[10px] text-slate-400 tracking-wide uppercase">Appending +150 kg CO2e is computed per short-haul flight.</p>
       </div>
-    </div>
+    </fieldset>
   );
 }

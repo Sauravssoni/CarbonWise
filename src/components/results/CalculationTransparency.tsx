@@ -4,7 +4,7 @@ export default function CalculationTransparency() {
   return (
     <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
       <div className="flex items-start gap-2.5 pb-2 border-b border-slate-100">
-        <HelpCircle className="w-5 h-5 text-slate-600 shrink-0 mt-0.5" />
+        <HelpCircle className="w-5 h-5 text-slate-600 shrink-0 mt-0.5" aria-hidden="true" />
         <div>
           <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-0.5">Calculation Transparency</h3>
           <p className="text-xs text-slate-400">Deterministic factors backed by educational references.</p>
@@ -13,7 +13,7 @@ export default function CalculationTransparency() {
 
       {/* Required Public Disclaimer Copy */}
       <div className="p-4 bg-emerald-50/15 border border-emerald-100 rounded-2xl flex items-start gap-3">
-        <ShieldAlert className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+        <ShieldAlert className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-xs text-emerald-800 font-medium leading-relaxed">
           CarbonWise provides educational estimates based on transparent assumptions. It is designed for awareness and habit change, not official greenhouse gas accounting. Note that all calculated emission values are approximate.
         </p>
@@ -77,14 +77,14 @@ export default function CalculationTransparency() {
           <ul className="text-xs text-slate-500 space-y-1.5 list-disc pl-4 leading-relaxed font-mono">
             <li>Online Deliveries: <span className="text-slate-800 font-semibold font-sans">1.2 (shipping logistics)</span></li>
             <li>Clothing Purchases: <span className="text-slate-800 font-semibold font-sans">8.0 (manufacture footprint)</span></li>
-            <li>Recycling Offset Offset: <span className="text-emerald-600 font-bold font-sans">-0.5 credit</span> (mindful offset mending/recycling habit)</li>
+            <li>Recycling Offset: <span className="text-emerald-600 font-bold font-sans">-0.5 credit</span> (mindful offset mending/recycling habit)</li>
             <li>Minimal Sorting additions: <span className="text-slate-800 font-semibold font-sans">+1.0 scale factor</span></li>
           </ul>
         </div>
       </div>
 
       <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-2.5">
-        <Info className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+        <Info className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-[10px] text-slate-400 tracking-wide uppercase leading-normal">
           Calculations incorporate DEFRA 2023, IEA Emission Factors v1.4, IPCC and CoolClimate references. All final metrics are educational estimations, not certified carbon credits.
         </p>

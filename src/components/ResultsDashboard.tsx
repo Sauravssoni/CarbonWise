@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { FootprintInput, CarbonResult, LocalHistory, AIResponse } from '../types';
-import { getLocalHistory } from '../lib/storage';
+import { FootprintInput, CarbonResult, LocalHistory } from '../types';
+import { InsightResponse, fetchInsightSafely } from '../lib/insight-client';
 import CarbonSnapshot from './results/CarbonSnapshot';
 import CategoryBreakdown from './results/CategoryBreakdown';
 import BiggestDriverCard from './results/BiggestDriverCard';
@@ -19,35 +19,6 @@ interface ResultsDashboardProps {
   localHistory: LocalHistory;
 }
 
-function getLocalDeterministicInsight(input: FootprintInput, result: CarbonResult): AIResponse {
-  const driver = result.biggestImpactDriver;
-  if (driver === 'transport') {
-    return {
-      personalInsight: `Your transport choices represent your biggest leverage point, driven by a travel total of ${input.distancePerDayKm || 0} km/day.`,
-      motivationalNudge: `Every active carbon-free trip you take helps avoid harmful greenhouse emissions. Small actions build sustainable compound savings!`,
-      customAction: `Try carpooling or taking bus/metro transit for your primary commute on 2 days this week.`,
-    };
-  } else if (driver === 'energy') {
-    return {
-      personalInsight: `Home energy utility usage (${input.electricityKwhMonthly || 0} kWh) partitioned per capita represents your biggest footprint component.`,
-      motivationalNudge: `Trimming standby draws and keeping cooling efficiency high protects both our climate and household finances.`,
-      customAction: `Reduce home AC use by one hour and wash your next batch of laundry in cold water.`,
-    };
-  } else if (driver === 'consumption') {
-    return {
-      personalInsight: `Manufacturing and shipping your monthly deliveries and clothing represents a heavy pre-consumer carbon footprint.`,
-      motivationalNudge: `Repairing and consolidating orders directly avoids energy-intensive manufacturing cycles. Repair first, purchase second!`,
-      customAction: `Postpone buying any non-urgent retail apparel and combine your next online orders into one batch delivery limit.`,
-    };
-  } else {
-    return {
-      personalInsight: `Your nutrition style (${input.dietType}) and eating cadence are your principal footprint contributors.`,
-      motivationalNudge: `Plant-forward recipes use a fraction of the land, water, and resources of conventional ingredients. Good cooking, good impact.`,
-      customAction: `Swap meat for a completely vegetable-forward dinner on three days this week.`,
-    };
-  }
-}
-
 export default function ResultsDashboard({
   input,
   result,
@@ -55,48 +26,23 @@ export default function ResultsDashboard({
   onRefreshHistory,
   localHistory,
 }: ResultsDashboardProps) {
-  const [aiInsight, setAiInsight] = useState<AIResponse & { source?: string } | null>(null);
+  const [aiInsight, setAiInsight] = useState<InsightResponse | null>(null);
   const [loadingInsight, setLoadingInsight] = useState<boolean>(false);
 
   useEffect(() => {
-    async function loadSpeechInsight() {
+    let cancelled = false;
+
+    async function loadInsight(): Promise<void> {
       setLoadingInsight(true);
-      try {
-        const response = await fetch('/api/generate-insight', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(input),
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          setAiInsight({
-            personalInsight: data.personalInsight,
-            motivationalNudge: data.motivationalNudge,
-            customAction: data.customAction,
-            source: data.source || 'gemini',
-          });
-        } else {
-          const localData = getLocalDeterministicInsight(input, result);
-          setAiInsight({
-            ...localData,
-            source: 'deterministic',
-          });
-        }
-      } catch (err) {
-        const localData = getLocalDeterministicInsight(input, result);
-        setAiInsight({
-          ...localData,
-          source: 'deterministic',
-        });
-      } finally {
+      const insight = await fetchInsightSafely(input, result);
+      if (!cancelled) {
+        setAiInsight(insight);
         setLoadingInsight(false);
       }
     }
 
-    loadSpeechInsight();
+    loadInsight();
+    return () => { cancelled = true; };
   }, [input, result]);
 
   return (
@@ -107,7 +53,7 @@ export default function ResultsDashboard({
           onClick={onNewCheckIn}
           className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors uppercase tracking-wider cursor-pointer"
         >
-          <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
+          <ArrowLeft className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>Footprint Wizard</span>
         </button>
 
@@ -115,7 +61,7 @@ export default function ResultsDashboard({
           onClick={onNewCheckIn}
           className="flex items-center gap-2 px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold border border-emerald-100 rounded-full text-xs transition-all cursor-pointer shadow-sm active:scale-95"
         >
-          <RefreshCw className="w-3.5 h-3.5 shrink-0" />
+          <RefreshCw className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>Check in again</span>
         </button>
       </div>
@@ -126,7 +72,7 @@ export default function ResultsDashboard({
         <div className="absolute -top-12 -right-12 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none select-none" />
 
         <div className="flex items-center gap-2 text-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] mb-3">
-          <Sparkles className="w-3.5 h-3.5 shrink-0 animate-pulse" />
+          <Sparkles className="w-3.5 h-3.5 shrink-0 animate-pulse" aria-hidden="true" />
           <span>Smart Carbon Insights Hub</span>
         </div>
 

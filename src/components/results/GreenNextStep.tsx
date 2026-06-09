@@ -65,7 +65,7 @@ export default function GreenNextStep({ input, onRefreshHistory }: GreenNextStep
       <div>
         {action.completed ? (
           <div className="w-full bg-emerald-800/40 text-emerald-100 border border-emerald-500/30 font-bold py-3 px-4 rounded-2xl text-xs flex items-center justify-center gap-2 select-none">
-            <Check className="w-4 h-4 shrink-0" />
+            <Check className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span>Committed for this week</span>
           </div>
         ) : (
@@ -74,7 +74,7 @@ export default function GreenNextStep({ input, onRefreshHistory }: GreenNextStep
             onClick={handleCommit}
             className="w-full bg-white text-emerald-700 font-bold py-3 px-4 rounded-2xl hover:bg-emerald-50 transition-colors shadow-md active:scale-[0.98] text-xs flex items-center justify-center gap-2 cursor-pointer"
           >
-            <Leaf className="w-4 h-4 shrink-0" />
+            <Leaf className="w-4 h-4 shrink-0" aria-hidden="true" />
             I'll do this
           </button>
         )}

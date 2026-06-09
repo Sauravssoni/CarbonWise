@@ -94,7 +94,7 @@ export default function FootprintForm({ onSubmitSuccess, onCancel, initialData }
       const inputData = parsed.data as FootprintInput;
       const resultObj = calculateFootprint(inputData);
       onSubmitSuccess(inputData, resultObj);
-    } catch (err) {
+    } catch (_err) {
       setErrorMessages(['An unexpected math error occurred calculating footprint.']);
     } finally {
       setIsSubmitting(false);
@@ -104,7 +104,14 @@ export default function FootprintForm({ onSubmitSuccess, onCancel, initialData }
   return (
     <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm animate-fade-in">
       {/* Step Header */}
-      <div className="w-full bg-slate-100 h-1.5 rounded-full mb-8 relative overflow-hidden flex">
+      <div
+        className="w-full bg-slate-100 h-1.5 rounded-full mb-8 relative overflow-hidden flex"
+        role="progressbar"
+        aria-valuenow={step}
+        aria-valuemin={1}
+        aria-valuemax={5}
+        aria-label={`Form progress: step ${step} of 5`}
+      >
         <div
           className="bg-emerald-600 h-full transition-all duration-300"
           style={{ width: `${(step / 5) * 100}%` }}

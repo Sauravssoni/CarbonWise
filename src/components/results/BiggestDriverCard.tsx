@@ -1,5 +1,5 @@
 import { CarbonResult } from '../../types';
-import { AlertCircle, Car, Lightbulb, Soup, ShoppingBag } from 'lucide-react';
+import { Car, Lightbulb, Soup, ShoppingBag } from 'lucide-react';
 
 interface BiggestDriverCardProps {
   result: CarbonResult;
@@ -56,7 +56,7 @@ export default function BiggestDriverCard({ result }: BiggestDriverCardProps) {
       <div className="flex justify-between items-end border-t border-white/10 pt-3 mt-4">
         <span className="text-[9px] opacity-50 uppercase tracking-[0.2em]">Leverage Detected</span>
         <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-emerald-400 shrink-0">
-          <Icon className="w-5 h-5 shrink-0" />
+          <Icon className="w-5 h-5 shrink-0" aria-hidden="true" />
         </div>
       </div>
     </div>

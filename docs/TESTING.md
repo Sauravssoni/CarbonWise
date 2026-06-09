@@ -1,6 +1,6 @@
 # CarbonWise Verification & Testing Matrix
 
-We incorporate 32 automated tests covering validation, storage, carbon calculations, impact translation, recommendation logic, and AI fallback safety to guarantee absolute stability.
+We incorporate 50 automated tests covering validation, storage, carbon calculations, impact translation, recommendation logic, AI fallback safety, and API/client fallback resilience to guarantee resilient stability.
 
 ### Automated Testing Matrix
 
@@ -36,6 +36,13 @@ We incorporate 32 automated tests covering validation, storage, carbon calculati
    - Asserts deterministic rules generate correctly.
    - Validates Gemini JSON schemas.
    - Verifies correct graceful deterministic fallback on AI failures or timeouts.
+
+7. **`insight-client.test.ts`**:
+   - Verifies `buildLocalInsight` returns valid response for all four driver categories.
+   - Validates `isValidInsightResponse` rejects null, undefined, empty, and malformed objects.
+   - Tests `fetchInsightSafely` returns local fallback on network errors, non-200 responses, invalid JSON, and invalid response shapes.
+   - Confirms valid Gemini responses are correctly returned.
+   - Guarantees `fetchInsightSafely` never throws regardless of failure mode.
 
 ### Running the verification suites
 ```bash

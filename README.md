@@ -38,7 +38,7 @@
 ## 🔒 Security Hardening Controls
 
 * **Zero Client-Side Secret Leakage**: API keys remain securely on the server-side environment variables on Vercel.
-* **Inbound Telemetry Sanitization**: Custom string fields are capped at 200 characters and HTML-escaped.
+* **Inbound Input Sanitization**: Custom string fields are capped at 200 characters and HTML-escaped.
 * **Numerical Bounds Clamping**: Validation boundaries block buffer overflows and extreme numbers (e.g., commute capped at 1,000 km/day).
 * **Vercel Functions Security Headers**: Set dynamically on Vercel (`X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`, and `X-Frame-Options: DENY`).
 * **Payload Limit**: Body parsed safely under typical Serverless limits.
@@ -55,6 +55,8 @@
 * **Visual States**: High-contrast active focus outlines, readable font scale, and mobile-friendly tap targets.
 * **Aria Status**: Toast alerts and validation errors implement `role="alert"` or `aria-live`.
 * **Screen Reader Friendly**: Graphs and category drivers have textual descriptions.
+* **Reduced Motion**: `prefers-reduced-motion` media query disables all animations for motion-sensitive users.
+* **Focus Rings**: `:focus-visible` outlines ensure keyboard users always see where focus is.
 
 ---
 
@@ -95,7 +97,7 @@ CarbonWise includes a comprehensive test suite using Vitest. Run the test suite:
 ```bash
 npm run test
 ```
-* **Testing Scope**: 32 automated tests covering validation, storage, carbon calculations, impact translation, recommendation logic, and AI fallback safety.
+* **Testing Scope**: 50 automated tests covering validation, storage, carbon calculations, impact translation, recommendation logic, AI fallback safety, and API/client fallback resilience.
 
 ---
 

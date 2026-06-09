@@ -31,7 +31,8 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
   const currentOut = data.eatingOutFrequency || 'Weekly';
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <fieldset className="space-y-6 animate-fade-in border-none p-0 m-0">
+      <legend className="sr-only">Step 3: Food and Nutrition</legend>
       <div>
         <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Step 3: Food & Nutrition</h3>
         <p className="text-slate-400 text-xs mt-1">
@@ -128,6 +129,6 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
           })}
         </div>
       </div>
-    </div>
+    </fieldset>
   );
 }

@@ -17,7 +17,8 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
   const currentRecycling = data.recyclingHabit ?? 'Sometimes';
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <fieldset className="space-y-6 animate-fade-in border-none p-0 m-0">
+      <legend className="sr-only">Step 4: Consumption and Purchases</legend>
       <div>
         <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Step 4: Consumption & Purchases</h3>
         <p className="text-slate-400 text-xs mt-1">
@@ -125,6 +126,6 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
           })}
         </div>
       </div>
-    </div>
+    </fieldset>
   );
 }

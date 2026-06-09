@@ -186,7 +186,7 @@ export function generateReductionPlan(input: FootprintInput): ActionItem[] {
     plan.push({
       id: 'plan-consistency-recycle',
       category: 'consumption',
-      text: 'Sort all dry recyclables (paper, glass, metals) and drops them exclusively at recycling bins.',
+      text: 'Sort all dry recyclables (paper, glass, metals) and drop them exclusively at recycling bins.',
       impactEstimatedKg: 3.0,
       effort: 'Balanced',
       completed: false,

@@ -66,7 +66,7 @@ function MainAppShell() {
     setActiveResult(result);
     refreshCachedState();
     setView('results');
-    showToast('Your carbon footprint footprint has been computed successfully!');
+    showToast('Your carbon footprint has been computed successfully!');
   };
 
   const handleLaunchDemo = () => {
@@ -92,6 +92,14 @@ function MainAppShell() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans select-none antialiased text-slate-900">
+      {/* Skip to main content link for keyboard and screen reader users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-emerald-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-bold"
+      >
+        Skip to main content
+      </a>
+
       {/* Upper Navigation Bar */}
       <header className="h-16 border-b border-slate-200 bg-white sticky top-0 z-30 shadow-sm leading-none">
         <div className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
@@ -108,12 +116,13 @@ function MainAppShell() {
           </button>
 
           {/* Core navigation anchors */}
-          <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
+          <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-500" aria-label="Main navigation">
             <button
               onClick={() => {
                 setView('landing');
               }}
               className={`hover:text-slate-800 transition-colors ${view === 'landing' ? 'text-emerald-600' : ''}`}
+              aria-current={view === 'landing' ? 'page' : undefined}
             >
               Overview
             </button>
@@ -122,6 +131,7 @@ function MainAppShell() {
                 setView('form');
               }}
               className={`hover:text-slate-800 transition-colors ${view === 'form' ? 'text-emerald-600' : ''}`}
+              aria-current={view === 'form' ? 'page' : undefined}
             >
               Footprint Wizard
             </button>
@@ -131,6 +141,7 @@ function MainAppShell() {
                   setView('results');
                 }}
                 className={`hover:text-slate-800 transition-colors ${view === 'results' ? 'text-emerald-600' : ''}`}
+                aria-current={view === 'results' ? 'page' : undefined}
               >
                 Dashboard
               </button>
@@ -155,7 +166,7 @@ function MainAppShell() {
       </header>
 
       {/* Main Container Stage */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-8 sm:py-12 flex flex-col justify-center">
+      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-6 py-8 sm:py-12 flex flex-col justify-center">
         {view === 'landing' && (
           <div className="space-y-12 animate-fade-in">
             <Hero

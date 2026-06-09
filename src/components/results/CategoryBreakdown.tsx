@@ -1,5 +1,5 @@
 import { CarbonResult } from '../../types';
-import { CATEGORY_COLORS, formatCO2 } from '../../lib/utils';
+import { formatCO2 } from '../../lib/utils';
 import { Car, Lightbulb, Soup, ShoppingBag } from 'lucide-react';
 
 interface CategoryBreakdownProps {
@@ -27,19 +27,15 @@ export default function CategoryBreakdown({ result }: CategoryBreakdownProps) {
       <div className="space-y-5">
         {(Object.keys(CATEGORY_MAP) as Array<keyof typeof CATEGORY_MAP>).map((catKey) => {
           const schema = CATEGORY_MAP[catKey];
-          const colors = CATEGORY_COLORS[catKey];
           const rawWeight = breakdown[catKey] || 0;
           const percent = Math.round(percentages[catKey] || 0);
           const Icon = schema.icon;
-
-          // Align progress bars and track colors to Sleek slate and emerald palettes
-          const barColor = catKey === 'transport' ? 'bg-emerald-500' : 'bg-slate-400';
 
           return (
             <div key={catKey} className="space-y-2">
               <div className="flex justify-between items-baseline text-xs font-semibold">
                 <span className="text-slate-600 uppercase tracking-wide flex items-center gap-1.5">
-                  <Icon className="w-3.5 h-3.5 text-slate-500 uppercase tracking-wide" />
+                  <Icon className="w-3.5 h-3.5 text-slate-500 uppercase tracking-wide" aria-hidden="true" />
                   {schema.label}
                 </span>
                 <span className="text-slate-900 font-mono">
@@ -48,9 +44,16 @@ export default function CategoryBreakdown({ result }: CategoryBreakdownProps) {
               </div>
 
               {/* Progressive track layout */}
-              <div className="h-2 bg-slate-100 rounded-full w-full overflow-hidden">
+              <div
+                className="h-2 bg-slate-100 rounded-full w-full overflow-hidden"
+                role="progressbar"
+                aria-valuenow={percent}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={`${schema.label}: ${percent}%`}
+              >
                 <div
-                  className={`h-full rounded-full transition-all duration-300 ${barColor}`}
+                  className="h-full rounded-full transition-all duration-300 bg-emerald-500"
                   style={{
                     width: `${percent}%`,
                   }}

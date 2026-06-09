@@ -62,7 +62,7 @@ export default function ImpactTranslator({ savingsKg }: ImpactTranslatorProps) {
               <div className="flex items-center justify-between gap-1.5">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{card.title}</span>
                 <div className="p-1 rounded-lg bg-white border border-slate-200">
-                  <Icon className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <Icon className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
                 </div>
               </div>
 

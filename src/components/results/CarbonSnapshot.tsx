@@ -74,7 +74,7 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
 
       {/* Feedback description card */}
       <div className={`p-4 rounded-2xl border flex items-start gap-3 ${bandStyles.border}`}>
-        <Sparkles className={`w-5 h-5 shrink-0 mt-0.5 ${bandStyles.text}`} />
+        <Sparkles className={`w-5 h-5 shrink-0 mt-0.5 ${bandStyles.text}`} aria-hidden="true" />
         <div>
           <div className={`font-bold text-xs ${bandStyles.text}`}>Assessment: {bandInfo.label}</div>
           <p className="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -85,7 +85,7 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
 
       {/* Disclaimer Section */}
       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-start gap-2.5">
-        <Shield className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+        <Shield className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-[10px] text-slate-400 leading-relaxed uppercase tracking-wider">
           CarbonWise educational values represent estimates based on static models.
         </p>
