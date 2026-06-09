@@ -70,11 +70,12 @@ describe('Local Profile Storage and Retention', () => {
   });
 
   it('recovers from empty or malformed localStorage payloads', () => {
-    // Manually trigger saving custom malformed JSON if we wanted to mimic,
-    // but we can trust our parser default fallback test.
-    clearStorageData();
+    localStorage.setItem('carbonwise_v1', '{malformed: "json"');
+    
+    // getLocalHistory should catch the parse error and return default
     const history = getLocalHistory();
     expect(history.checkIns).toEqual([]);
     expect(history.completedActionIds).toEqual([]);
+    expect(history.customActions).toEqual([]);
   });
 });

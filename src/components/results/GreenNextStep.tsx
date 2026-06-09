@@ -44,7 +44,7 @@ export default function GreenNextStep({ input, onRefreshHistory }: GreenNextStep
   return (
     <div className="bg-emerald-600 rounded-3xl p-6 text-white shadow-xl shadow-emerald-100/50 flex-1 flex flex-col justify-between min-h-[14rem] border border-emerald-500">
       <div className="mb-6">
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-85">
+        <span className="text-xs font-bold uppercase tracking-[0.2em] opacity-85">
           One Green Next Step
         </span>
         <h3 className="text-xl sm:text-2xl font-light mt-2 leading-tight">
@@ -53,10 +53,10 @@ export default function GreenNextStep({ input, onRefreshHistory }: GreenNextStep
         
         {/* Dynamic tagging system */}
         <div className="mt-4 flex flex-wrap gap-2">
-          <span className="px-2 py-1 bg-white/20 rounded text-[9px] font-bold uppercase tracking-wider">
+          <span className="px-2 py-1 bg-white/20 rounded text-xs font-bold uppercase tracking-wider">
             {isHighImpact ? 'High Value' : 'Quick Win'}
           </span>
-          <span className="px-2 py-1 bg-white/20 rounded text-[9px] font-bold uppercase tracking-wider">
+          <span className="px-2 py-1 bg-white/20 rounded text-xs font-bold uppercase tracking-wider">
             {action.impactEstimatedKg.toFixed(1)} kg saved / wk
           </span>
         </div>

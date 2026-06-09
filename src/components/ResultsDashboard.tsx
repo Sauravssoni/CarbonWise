@@ -42,11 +42,21 @@ export default function ResultsDashboard({
     }
 
     loadInsight();
+    
+    // Focus management for accessibility
+    const heading = document.getElementById('results-heading');
+    if (heading) {
+      heading.focus();
+    }
+
     return () => { cancelled = true; };
   }, [input, result]);
 
   return (
-    <div className="space-y-6 select-none animate-fade-in">
+    <div className="space-y-6 select-none animate-fade-in" aria-labelledby="results-heading">
+      <h2 id="results-heading" tabIndex={-1} className="sr-only outline-none">
+        Your Carbon Footprint Results
+      </h2>
       {/* Navigation and Actions */}
       <div className="flex justify-between items-center gap-4 flex-wrap pb-3 border-b border-slate-200">
         <button
@@ -71,7 +81,7 @@ export default function ResultsDashboard({
         {/* Ambient indicator */}
         <div className="absolute -top-12 -right-12 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none select-none" />
 
-        <div className="flex items-center gap-2 text-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] mb-3">
+        <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-[0.15em] mb-3">
           <Sparkles className="w-3.5 h-3.5 shrink-0 animate-pulse" aria-hidden="true" />
           <span>Smart Carbon Insights Hub</span>
         </div>
@@ -92,18 +102,18 @@ export default function ResultsDashboard({
             </p>
             {aiInsight.customAction && (
               <div className="pt-2 flex flex-wrap gap-2 items-center">
-                <span className="text-[9px] font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-900 px-2 py-0.5 rounded uppercase tracking-wider select-none">
+                <span className="text-xs font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-900 px-2 py-0.5 rounded uppercase tracking-wider select-none">
                   Task Suggestion
                 </span>
                 <span className="text-xs font-semibold text-slate-200">"{aiInsight.customAction}"</span>
               </div>
             )}
             {aiInsight.source !== 'gemini' && (
-              <p className="text-[10px] text-slate-400 italic">
+              <p className="text-xs text-slate-400 italic">
                 CarbonWise generated this using transparent local rules, so your results still work without an AI key.
               </p>
             )}
-            <div className="flex justify-end pt-1 text-[8px] text-slate-500 uppercase tracking-wider select-none">
+            <div className="flex justify-end pt-1 text-xs text-slate-500 uppercase tracking-wider select-none">
               {aiInsight.source === 'gemini' ? 'AI-enhanced insight' : 'Local deterministic insight'}
             </div>
           </div>

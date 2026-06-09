@@ -77,11 +77,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const aiResponse = await getAiInsight(input, result, apiKey);
 
     return res.status(200).json(aiResponse);
-  } catch (err: any) {
+  } catch (error: unknown) {
     // Prevent system stack trace leakage
     return res.status(500).json({
       error: 'Internal processing failure.',
-      msg: err?.message || String(err)
     });
   }
 }

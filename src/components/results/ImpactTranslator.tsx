@@ -60,7 +60,7 @@ export default function ImpactTranslator({ savingsKg }: ImpactTranslatorProps) {
               className="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex flex-col justify-between"
             >
               <div className="flex items-center justify-between gap-1.5">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{card.title}</span>
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{card.title}</span>
                 <div className="p-1 rounded-lg bg-white border border-slate-200">
                   <Icon className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
                 </div>
@@ -68,7 +68,7 @@ export default function ImpactTranslator({ savingsKg }: ImpactTranslatorProps) {
 
               <div className="mt-4">
                 <div className={`text-lg font-bold tracking-tight ${card.accent}`}>{card.metric}</div>
-                <p className="text-[10px] text-slate-400 leading-normal mt-1">{card.desc}</p>
+                <p className="text-xs text-slate-400 leading-normal mt-1">{card.desc}</p>
               </div>
             </div>
           );

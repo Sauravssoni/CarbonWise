@@ -56,7 +56,7 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
                 <span className="text-2xl mr-3 mt-1 select-none" aria-hidden="true">{opt.icon}</span>
                 <div>
                   <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5 leading-normal">{opt.description}</div>
+                  <div className="text-xs text-slate-400 mt-0.5 leading-normal">{opt.description}</div>
                 </div>
               </button>
             );
@@ -67,7 +67,7 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
       {/* Distance Slider / Input */}
       <div className="space-y-3">
         <div className="flex justify-between items-center">
-          <label htmlFor="distance-input" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+          <label id="distance-label" htmlFor="distance-slider" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
             Daily Commute Distance <span className="text-red-500">*</span>
           </label>
           <span className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-150 px-2.5 py-1 rounded-lg">
@@ -77,6 +77,7 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
         <div className="flex gap-4 items-center">
           <input
             id="distance-slider"
+            aria-labelledby="distance-label"
             type="range"
             min="0"
             max="150"
@@ -84,10 +85,10 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
             value={currentDistance}
             onChange={(e) => onChange({ distancePerDayKm: Math.min(1000, Number(e.target.value)) })}
             className="flex-1 accent-emerald-600 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
-            aria-label="Distance slider"
           />
           <input
             id="distance-input"
+            aria-label="Daily commute distance in kilometers"
             type="number"
             min="0"
             max="1000"
@@ -103,7 +104,7 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
         <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between">
           <div>
             <div className="text-xs font-bold text-slate-800 uppercase tracking-wide">Regular vehicle ride-share?</div>
-            <p className="text-[10px] text-slate-400 leading-normal mt-0.5">Shared transport splits the daily fuel output factor.</p>
+            <p className="text-xs text-slate-400 leading-normal mt-0.5">Shared transport splits the daily fuel output factor.</p>
           </div>
           <button
             type="button"
@@ -142,7 +143,7 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
             className="block w-full bg-transparent text-xs text-slate-800 border-none outline-none focus:ring-0 placeholder-slate-400"
           />
         </div>
-        <p className="text-[10px] text-slate-400 tracking-wide uppercase">Appending +150 kg CO2e is computed per short-haul flight.</p>
+        <p className="text-xs text-slate-400 tracking-wide uppercase">Appending +150 kg CO2e is computed per short-haul flight.</p>
       </div>
     </fieldset>
   );

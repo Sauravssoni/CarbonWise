@@ -17,7 +17,7 @@ To block buffer overflows, extreme load scenarios, or strange calculation answer
 AI API keys are isolated on the Node.js backend. Inbound telemetry payload is parsed server-side: no public API credentials have transit to client-side bundles.
 
 ### 4. Custom HTTP Security Headers
-Express appends standard, robust security layers:
+Vercel appends standard, robust security layers:
 - `X-Content-Type-Options: nosniff` (guards against MIME type sniffing)
 - `Referrer-Policy: strict-origin-when-cross-origin`
 - `Permissions-Policy: camera=(), microphone=(), geolocation=()` (disables frame hardware access)

@@ -54,7 +54,7 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
                 aria-checked={isSelected}
               >
                 <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                <div className="text-[10px] text-slate-400 mt-1 flex-grow leading-relaxed">{opt.details}</div>
+                <div className="text-xs text-slate-400 mt-1 flex-grow leading-relaxed">{opt.details}</div>
               </button>
             );
           })}
@@ -86,7 +86,7 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
                   <span>{opt.label}</span>
                   <span className="text-sm" aria-hidden="true">{opt.icon}</span>
                 </div>
-                <div className="text-[10px] text-slate-400 mt-1 leading-relaxed">{opt.desc}</div>
+                <div className="text-xs text-slate-400 mt-1 leading-relaxed">{opt.desc}</div>
               </button>
             );
           })}
@@ -96,7 +96,7 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
       {/* Optional Note */}
       <div className="space-y-2">
         <label htmlFor="optional-notes" className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
-          Optional Personal Motives <span className="text-slate-400 font-normal text-[10px] normal-case">(Maximum 200 characters)</span>
+          Optional Personal Motives <span className="text-slate-400 font-normal text-xs normal-case">(Maximum 200 characters)</span>
         </label>
         <textarea
           id="optional-notes"
@@ -107,7 +107,7 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
           onChange={(e) => onChange({ optionalNote: e.target.value })}
           className="block w-full border border-slate-200 rounded-2xl px-4 py-3 text-xs text-slate-850 placeholder-slate-400 bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono leading-relaxed"
         />
-        <div className="flex justify-end text-slate-400 text-[10px] uppercase font-bold tracking-wider text-right pr-1">
+        <div className="flex justify-end text-slate-400 text-xs uppercase font-bold tracking-wider text-right pr-1">
           {currentNote.length} / 200 characters
         </div>
       </div>

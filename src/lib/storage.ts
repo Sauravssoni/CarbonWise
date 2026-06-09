@@ -44,13 +44,13 @@ export function getLocalHistory(): LocalHistory {
   try {
     const raw = storage.getItem(STORAGE_KEY);
     if (!raw) {
-      return DEFAULT_STATE;
+      return { ...DEFAULT_STATE, checkIns: [], completedActionIds: [], customActions: [] };
     }
     const parsed = JSON.parse(raw);
     
     // Integrity checks for corrupt data
     if (!parsed || typeof parsed !== 'object') {
-      return DEFAULT_STATE;
+      return { ...DEFAULT_STATE, checkIns: [], completedActionIds: [], customActions: [] };
     }
     
     return {
@@ -60,7 +60,7 @@ export function getLocalHistory(): LocalHistory {
     };
   } catch (err) {
     // Graceful recovery from corrupt storage formats
-    return DEFAULT_STATE;
+    return { ...DEFAULT_STATE, checkIns: [], completedActionIds: [], customActions: [] };
   }
 }
 

@@ -18,7 +18,7 @@ Designed using a meticulous, slate-and-emerald minimalist theme, **CarbonWise** 
 5. 🎯 **Carbon Reduction Goals** — Defining active targets and commitment levels.
 
 ### 🧠 The Tech Underneath:
-* **Custom Full-Stack Server** — An Express.ts backend bound natively with Vite.
+* **Custom Full-Stack Server** — An Vercel Serverless backend route bound natively with Vite.
 * **Deterministic Fuel Calculation Engine** — Developed with transparent reference benchmarks (DEFRA 2023, IEA Emission Factors v1.4) ensuring mathematically stable baselines.
 * **Smart Gemini AI Integration** — When enabled, the server leverages **Gemini 3.5 Flash** behind secure `/api/*` proxies to generate fully personalized, contextual insights and motivational nudges based on user-entered targets—falling back gracefully to the deterministic model on network breaks.
 * **Local Persistence Loop** — Maintains offline-first privacy by caching results and checkins inside local storage, rendering live timelines, progress metrics, and action commitments.

@@ -14,6 +14,6 @@ Traditional carbon accounting tools are boring, hard to navigate, or make people
 - **AI-Powered or Deterministic Recommendations**: Blends secure, server-controlled model intelligence with deterministic backups.
 
 ### Tech Stack Win
-- Built with React 19, TypeScript strict types, and Express + Vite.
+- Built with React 19, TypeScript strict types, and Vite + Vercel Serverless Functions.
 - Tested aggressively via Vitest check models.
 - Fully offline-ready: syncs state with native client browser storage without database costs or login friction, guarding user privacy perfectly.

@@ -45,7 +45,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
           <button
             type="button"
             onClick={() => setInputType('kwh')}
-            className={`flex-1 text-center py-1.5 px-3 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
+            className={`flex-1 text-center py-1.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
               inputType === 'kwh' ? 'bg-white text-slate-805 shadow-sm font-bold' : 'text-slate-400 hover:text-slate-700'
             }`}
           >
@@ -54,7 +54,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
           <button
             type="button"
             onClick={() => setInputType('bill')}
-            className={`flex-1 text-center py-1.5 px-3 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
+            className={`flex-1 text-center py-1.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
               inputType === 'bill' ? 'bg-white text-slate-805 shadow-sm font-bold' : 'text-slate-400 hover:text-slate-700'
             }`}
           >
@@ -67,7 +67,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
       {inputType === 'kwh' ? (
         <div className="space-y-3">
           <div className="flex justify-between items-center">
-            <label htmlFor="kwh-input" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+            <label id="kwh-label" htmlFor="kwh-slider" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
               Monthly Electricity Consumed <span className="text-red-500">*</span>
             </label>
             <span className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-150 px-2.5 py-1 rounded-lg">
@@ -77,6 +77,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
           <div className="flex gap-4 items-center">
             <input
               id="kwh-slider"
+              aria-labelledby="kwh-label"
               type="range"
               min="0"
               max="1500"
@@ -84,10 +85,10 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
               value={currentKwh}
               onChange={(e) => onChange({ electricityKwhMonthly: Number(e.target.value) })}
               className="flex-1 accent-emerald-600 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
-              aria-label="Direct kWh slider"
             />
             <input
               id="kwh-input"
+              aria-label="Direct kWh"
               type="number"
               min="0"
               max="50000"
@@ -100,7 +101,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
       ) : (
         <div className="space-y-3">
           <div className="flex justify-between items-center">
-            <label htmlFor="bill-input" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+            <label id="bill-label" htmlFor="bill-slider" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
               Estimated Monthly Bill ($) <span className="text-red-500">*</span>
             </label>
             <span className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-150 px-2.5 py-1 rounded-lg">
@@ -110,6 +111,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
           <div className="flex gap-4 items-center">
             <input
               id="bill-slider"
+              aria-labelledby="bill-label"
               type="range"
               min="0"
               max="300"
@@ -117,10 +119,10 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
               value={rawBillValue}
               onChange={(e) => handleBillChange(Number(e.target.value))}
               className="flex-1 accent-emerald-600 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
-              aria-label="Bill estimate slider"
             />
             <input
               id="bill-input"
+              aria-label="Estimated monthly bill"
               type="number"
               min="0"
               max="5000"
@@ -129,7 +131,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
               className="w-24 text-center border border-slate-200 rounded-xl px-2 py-1.5 text-xs bg-white text-slate-800 font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </div>
-          <p className="text-[10px] text-slate-400 uppercase tracking-wider">Tariff factor is calculated at an average state benchmark of $0.20 per kWh.</p>
+          <p className="text-xs text-slate-400 uppercase tracking-wider">Tariff factor is calculated at an average state benchmark of $0.20 per kWh.</p>
         </div>
       )}
 
@@ -149,7 +151,7 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
             className="block w-full bg-transparent text-xs text-slate-800 border-none outline-none focus:ring-0 text-center font-bold font-mono"
           />
         </div>
-        <p className="text-[10px] text-slate-405 uppercase tracking-wide">Utility weight metrics are divided evenly across household members.</p>
+        <p className="text-xs text-slate-405 uppercase tracking-wide">Utility weight metrics are divided evenly across household members.</p>
       </div>
 
       {/* AC usage choice */}
@@ -176,9 +178,9 @@ export default function EnergyStep({ data, onChange }: EnergyStepProps) {
                 <div className="flex-1">
                   <div className="font-bold text-slate-800 text-xs flex items-center justify-between">
                     <span>{opt.label}</span>
-                    <span className="text-[10px] bg-slate-100 text-slate-500 font-bold px-1.5 py-0.5 rounded uppercase">{opt.icon}</span>
+                    <span className="text-xs bg-slate-100 text-slate-500 font-bold px-1.5 py-0.5 rounded uppercase">{opt.icon}</span>
                   </div>
-                  <div className="text-[10px] text-slate-400 mt-1 leading-normal">{opt.details}</div>
+                  <div className="text-xs text-slate-400 mt-1 leading-normal">{opt.details}</div>
                 </div>
               </button>
             );

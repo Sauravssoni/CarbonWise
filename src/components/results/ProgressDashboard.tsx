@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { LocalHistory } from '../../types';
 import { getBestCategoryImproved, getReductionStreak } from '../../lib/storage';
 import { formatCO2 } from '../../lib/utils';
-import { Calendar, Award, Flame, Zap, Trash2 } from 'lucide-react';
+import { Calendar, Award, Flame, Zap, Trash2, AlertTriangle } from 'lucide-react';
 
 interface ProgressDashboardProps {
   history: LocalHistory;
@@ -9,16 +10,11 @@ interface ProgressDashboardProps {
 }
 
 export default function ProgressDashboard({ history, onClear }: ProgressDashboardProps) {
+  const [showConfirm, setShowConfirm] = useState(false);
   const currentStreak = getReductionStreak();
   const bestCategory = getBestCategoryImproved();
   const checkInCount = history.checkIns.length;
   const recentCheck = history.checkIns[0];
-
-  const handleClear = () => {
-    if (confirm('Are you absolutely sure you want to clear your local footprint history and progress logs? This is permanent.')) {
-      onClear();
-    }
-  };
 
   return (
     <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
@@ -27,18 +23,44 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
           <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-0.5">Local Progress</h3>
           <p className="text-xs text-slate-400">Cached on device. Zero external servers required.</p>
         </div>
-        {checkInCount > 0 && (
+        {checkInCount > 0 && !showConfirm && (
           <button
             type="button"
-            onClick={handleClear}
+            onClick={() => setShowConfirm(true)}
             className="flex items-center gap-1.5 text-xs text-red-500 hover:text-red-700 font-bold transition-all px-3 py-1.5 hover:bg-red-50/50 rounded-xl border border-transparent"
-            aria-label="Reset local metrics"
+            aria-label="Clear local data"
           >
             <Trash2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-            <span>Clear dataset</span>
+            <span>Clear data</span>
           </button>
         )}
       </div>
+
+      {showConfirm && (
+        <div className="bg-red-50 border border-red-100 p-4 rounded-2xl flex flex-col gap-3">
+          <div className="flex gap-2 items-start text-red-800 text-xs">
+            <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
+            <p>This removes local CarbonWise history from this device.</p>
+          </div>
+          <div className="flex gap-2 justify-end">
+            <button
+              onClick={() => setShowConfirm(false)}
+              className="px-3 py-1.5 text-xs font-bold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                setShowConfirm(false);
+                onClear();
+              }}
+              className="px-3 py-1.5 text-xs font-bold text-white bg-red-600 border border-red-600 rounded-lg hover:bg-red-700 transition-colors"
+            >
+              Confirm clear data
+            </button>
+          </div>
+        </div>
+      )}
 
       {checkInCount === 0 ? (
         <div className="p-8 border border-dashed border-slate-200 rounded-2xl text-center space-y-2 select-none">
@@ -60,7 +82,7 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-300 text-xs">F</div>
             </div>
             <div className="text-center sm:text-right">
-              <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">Habit Streak</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">Habit Streak</p>
               <p className="text-lg font-bold text-emerald-600 mt-1">{currentStreak} Days Tracked</p>
             </div>
           </div>
@@ -71,7 +93,7 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
-                <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Checks</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Total Checks</span>
               </div>
               <div className="text-base font-bold text-slate-800">{checkInCount} audits</div>
             </div>
@@ -80,7 +102,7 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Flame className="w-4 h-4 text-emerald-500 shrink-0" aria-hidden="true" />
-                <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Commitments</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Commitments</span>
               </div>
               <div className="text-base font-bold text-slate-800">{history.completedActionIds.length} logged</div>
             </div>
@@ -89,7 +111,7 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
-                <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Best Area</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Best Area</span>
               </div>
               <div className="text-xs font-bold text-slate-800 truncate" title={bestCategory}>{bestCategory}</div>
             </div>
@@ -98,7 +120,7 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
-                <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Weekly AVG</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Weekly AVG</span>
               </div>
               <div className="text-xs font-bold font-mono text-slate-800">
                 {recentCheck ? formatCO2(recentCheck.result.weeklyTotal) : '0.0 kg'}
@@ -123,7 +145,7 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
                       <span className="w-2 h-2 bg-emerald-500 rounded-full shrink-0" aria-hidden="true" />
                       <div>
                         <div className="font-bold text-slate-800">{record.result.footprintBand} footprint band</div>
-                        <div className="text-[9px] text-slate-400 mt-0.5">{dateLabel}</div>
+                        <div className="text-xs text-slate-400 mt-0.5">{dateLabel}</div>
                       </div>
                     </div>
                     <div className="font-mono font-bold text-slate-800">

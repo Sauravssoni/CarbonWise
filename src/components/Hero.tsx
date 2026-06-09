@@ -13,7 +13,7 @@ export default function Hero({ onStartCheck, onTryDemo }: HeroProps) {
 
       <div className="space-y-4 max-w-3xl mx-auto">
         {/* Brand visual Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 text-emerald-800 border border-emerald-100 rounded-full text-[10px] font-bold uppercase tracking-wider mx-auto select-none">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 text-emerald-800 border border-emerald-100 rounded-full text-xs font-bold uppercase tracking-wider mx-auto select-none">
           <Leaf className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
           <span>Carbon Impact Awareness</span>
         </div>

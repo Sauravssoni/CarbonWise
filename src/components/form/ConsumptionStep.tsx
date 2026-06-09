@@ -29,7 +29,7 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
       {/* Online orders per month */}
       <div className="space-y-3">
         <div className="flex justify-between items-center">
-          <label htmlFor="orders-input" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+          <label id="orders-label" htmlFor="orders-slider" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
             Monthly Online Deliveries <span className="text-red-500">*</span>
           </label>
           <span className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-150 px-2.5 py-1 rounded-lg">
@@ -39,6 +39,7 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
         <div className="flex gap-4 items-center">
           <input
             id="orders-slider"
+            aria-labelledby="orders-label"
             type="range"
             min="0"
             max="40"
@@ -46,10 +47,10 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
             value={currentOrders}
             onChange={(e) => onChange({ onlineOrdersMonthly: Number(e.target.value) })}
             className="flex-1 accent-emerald-600 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
-            aria-label="Online orders slider"
           />
           <input
             id="orders-input"
+            aria-label="Monthly online deliveries"
             type="number"
             min="0"
             max="500"
@@ -63,7 +64,7 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
       {/* Apparel shopping */}
       <div className="space-y-3">
         <div className="flex justify-between items-center">
-          <label htmlFor="clothing-input" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+          <label id="clothing-label" htmlFor="clothing-slider" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
             Monthly Apparel Purchases <span className="text-red-500">*</span>
           </label>
           <span className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-150 px-2.5 py-1 rounded-lg">
@@ -73,6 +74,7 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
         <div className="flex gap-4 items-center">
           <input
             id="clothing-slider"
+            aria-labelledby="clothing-label"
             type="range"
             min="0"
             max="15"
@@ -80,10 +82,10 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
             value={currentClothing}
             onChange={(e) => onChange({ clothingPurchasesMonthly: Number(e.target.value) })}
             className="flex-1 accent-emerald-600 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
-            aria-label="Clothing purchases slider"
           />
           <input
             id="clothing-input"
+            aria-label="Monthly apparel purchases"
             type="number"
             min="0"
             max="100"
@@ -92,7 +94,7 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
             className="w-24 text-center border border-slate-200 rounded-xl px-2 py-1.5 text-xs bg-white text-slate-800 font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
-        <p className="text-[10px] text-slate-400 uppercase tracking-wide">Adding a standard cotton outfit carries ~8 kg direct CO2e output.</p>
+        <p className="text-xs text-slate-400 uppercase tracking-wide">Adding a standard cotton outfit carries ~8 kg direct CO2e output.</p>
       </div>
 
       {/* Recycling Tendency */}
@@ -120,7 +122,7 @@ export default function ConsumptionStep({ data, onChange }: ConsumptionStepProps
                   <span>{opt.icon}</span>
                   <span>{opt.label}</span>
                 </div>
-                <div className="text-[10px] text-slate-400 mt-2 flex-grow leading-relaxed">{opt.description}</div>
+                <div className="text-xs text-slate-400 mt-2 flex-grow leading-relaxed">{opt.description}</div>
               </button>
             );
           })}

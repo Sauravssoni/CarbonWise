@@ -42,7 +42,7 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
         
         {/* Core Sleek Metric Display */}
         <div className="flex flex-col items-center justify-center text-center py-6 border-y border-slate-100 bg-slate-50/40 rounded-2xl p-4">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Daily Estimated Footprint</span>
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Daily Estimated Footprint</span>
           <div className="flex items-baseline gap-1 select-all">
             <span className="text-6xl sm:text-7xl font-light text-slate-900 tracking-tighter">
               {dailyTotal.toFixed(1)}
@@ -59,13 +59,13 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
       {/* Grid containing other projections */}
       <div className="grid grid-cols-2 gap-4 text-center">
         <div className="p-3 bg-slate-50/30 rounded-xl border border-slate-100">
-          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Weekly Output</div>
+          <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">Weekly Output</div>
           <div className="text-lg font-bold text-slate-800 mt-1 select-all">
             {formatCO2(weeklyTotal)}
           </div>
         </div>
         <div className="p-3 bg-slate-50/30 rounded-xl border border-slate-100">
-          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Monthly Output</div>
+          <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">Monthly Output</div>
           <div className="text-lg font-bold text-slate-800 mt-1 select-all">
             {formatCO2(monthlyTotal)}
           </div>
@@ -86,7 +86,7 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
       {/* Disclaimer Section */}
       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-start gap-2.5">
         <Shield className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" aria-hidden="true" />
-        <p className="text-[10px] text-slate-400 leading-relaxed uppercase tracking-wider">
+        <p className="text-xs text-slate-400 leading-relaxed uppercase tracking-wider">
           CarbonWise educational values represent estimates based on static models.
         </p>
       </div>

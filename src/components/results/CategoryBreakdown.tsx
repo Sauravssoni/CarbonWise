@@ -59,7 +59,7 @@ export default function CategoryBreakdown({ result }: CategoryBreakdownProps) {
                   }}
                 />
               </div>
-              <p className="text-[10px] text-slate-400 italic font-sans leading-none">{schema.desc}</p>
+              <p className="text-xs text-slate-400 italic font-sans leading-none">{schema.desc}</p>
             </div>
           );
         })}

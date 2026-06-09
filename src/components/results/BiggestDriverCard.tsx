@@ -37,10 +37,10 @@ export default function BiggestDriverCard({ result }: BiggestDriverCardProps) {
     <div className="bg-slate-900 rounded-3xl p-6 text-white shadow-xl flex flex-col justify-between min-h-[14rem] border border-slate-800">
       <div>
         <div className="flex justify-between items-start">
-          <span className="text-[10px] font-bold uppercase tracking-[0.15em] opacity-70">
+          <span className="text-xs font-bold uppercase tracking-[0.15em] opacity-70">
             Biggest Impact Driver
           </span>
-          <span className="px-2 py-0.5 bg-white/10 border border-white/5 rounded text-[9px] font-mono opacity-80 uppercase tracking-wider">
+          <span className="px-2 py-0.5 bg-white/10 border border-white/5 rounded text-xs font-mono opacity-80 uppercase tracking-wider">
             Analysis v2.1
           </span>
         </div>
@@ -54,7 +54,7 @@ export default function BiggestDriverCard({ result }: BiggestDriverCardProps) {
       </div>
 
       <div className="flex justify-between items-end border-t border-white/10 pt-3 mt-4">
-        <span className="text-[9px] opacity-50 uppercase tracking-[0.2em]">Leverage Detected</span>
+        <span className="text-xs opacity-50 uppercase tracking-[0.2em]">Leverage Detected</span>
         <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-emerald-400 shrink-0">
           <Icon className="w-5 h-5 shrink-0" aria-hidden="true" />
         </div>

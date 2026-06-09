@@ -64,7 +64,7 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
                 <span className="text-2xl mr-3 mt-1 select-none" aria-hidden="true">{opt.icon}</span>
                 <div>
                   <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                  <div className="text-[10px] text-slate-404 mt-0.5 leading-relaxed">{opt.description}</div>
+                  <div className="text-xs text-slate-404 mt-0.5 leading-relaxed">{opt.description}</div>
                 </div>
               </button>
             );
@@ -94,7 +94,7 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
                 aria-checked={isSelected}
               >
                 <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                <div className="text-[10px] text-slate-400 leading-relaxed mt-1">{opt.description}</div>
+                <div className="text-xs text-slate-400 leading-relaxed mt-1">{opt.description}</div>
               </button>
             );
           })}
@@ -123,7 +123,7 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
                 aria-checked={isSelected}
               >
                 <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                <div className="text-[10px] text-slate-400 leading-relaxed mt-1">{opt.desc}</div>
+                <div className="text-xs text-slate-400 leading-relaxed mt-1">{opt.desc}</div>
               </button>
             );
           })}

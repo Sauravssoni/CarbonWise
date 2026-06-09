@@ -206,7 +206,7 @@ function MainAppShell() {
 
       {/* Deep Footer branding metadata */}
       <footer className="h-14 px-8 border-t border-slate-200 bg-slate-100 flex items-center justify-center text-center select-none leading-none">
-        <p className="text-[10px] text-slate-400 uppercase tracking-widest">
+        <p className="text-xs text-slate-400 uppercase tracking-widest">
           CarbonWise provides educational estimates, not official carbon accounting. 
           <span className="mx-2">•</span> 
           Calculation Factors: DEFRA 2023, IEA Emission Factors v1.4

@@ -36,7 +36,7 @@ export default function FormNavigation({
       </div>
 
       {/* Progress Page indicator */}
-      <div className="text-[10px] font-bold text-slate-400 tracking-widest uppercase select-none">
+      <div className="text-xs font-bold text-slate-400 tracking-widest uppercase select-none">
         Step {currentStep} / {totalSteps}
       </div>
 

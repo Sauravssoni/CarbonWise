@@ -25,7 +25,7 @@ export default function CalculationTransparency() {
         <div className="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-3">
           <h4 className="text-[11px] font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between">
             <span>Transport & Flights (approx.)</span>
-            <span className="text-[10px] text-slate-400 font-mono normal-case">kg CO2e/km</span>
+            <span className="text-xs text-slate-400 font-mono normal-case">kg CO2e/km</span>
           </h4>
           <ul className="text-xs text-slate-500 space-y-1.5 list-disc pl-4 leading-relaxed font-mono">
             <li>Solo Car Travel: <span className="text-slate-800 font-semibold font-sans">0.18</span></li>
@@ -42,7 +42,7 @@ export default function CalculationTransparency() {
         <div className="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-3">
           <h4 className="text-[11px] font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between">
             <span>Power & AC intensity (approx.)</span>
-            <span className="text-[10px] text-slate-400 font-mono normal-case">kg CO2e/unit</span>
+            <span className="text-xs text-slate-400 font-mono normal-case">kg CO2e/unit</span>
           </h4>
           <ul className="text-xs text-slate-500 space-y-1.5 list-disc pl-4 leading-relaxed font-mono">
             <li>AC Low Mode: <span className="text-slate-800 font-semibold font-sans">+0.9 kg/day</span></li>
@@ -57,7 +57,7 @@ export default function CalculationTransparency() {
         <div className="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-3">
           <h4 className="text-[11px] font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between">
             <span>Dietary Benchmarks</span>
-            <span className="text-[10px] text-slate-400 font-mono normal-case">kg CO2e/day</span>
+            <span className="text-xs text-slate-400 font-mono normal-case">kg CO2e/day</span>
           </h4>
           <ul className="text-xs text-slate-500 space-y-1.5 list-disc pl-4 leading-relaxed font-mono">
             <li>Plant-forward (Vegan): <span className="text-slate-800 font-semibold font-sans">1.5</span></li>
@@ -72,7 +72,7 @@ export default function CalculationTransparency() {
         <div className="p-4 bg-slate-50 border border-slate-100 rounded-2xl space-y-3">
           <h4 className="text-[11px] font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between">
             <span>Goods & Recycling</span>
-            <span className="text-[10px] text-slate-400 font-mono normal-case">kg CO2e/item</span>
+            <span className="text-xs text-slate-400 font-mono normal-case">kg CO2e/item</span>
           </h4>
           <ul className="text-xs text-slate-500 space-y-1.5 list-disc pl-4 leading-relaxed font-mono">
             <li>Online Deliveries: <span className="text-slate-800 font-semibold font-sans">1.2 (shipping logistics)</span></li>
@@ -85,7 +85,7 @@ export default function CalculationTransparency() {
 
       <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-2.5">
         <Info className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" aria-hidden="true" />
-        <p className="text-[10px] text-slate-400 tracking-wide uppercase leading-normal">
+        <p className="text-xs text-slate-400 tracking-wide uppercase leading-normal">
           Calculations incorporate DEFRA 2023, IEA Emission Factors v1.4, IPCC and CoolClimate references. All final metrics are educational estimations, not certified carbon credits.
         </p>
       </div>
