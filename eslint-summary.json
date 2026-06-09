@@ -1,23 +1,15 @@
 [
   {
     "file": "/Users/tzar/Desktop/carbonwise/.vercel/output/functions/api/generate-insight.func/api/generate-insight.js",
-    "messages": [
-      "no-undef",
-      "@typescript-eslint/no-unused-vars"
-    ]
+    "messages": ["no-undef", "@typescript-eslint/no-unused-vars"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/.vercel/output/functions/api/generate-insight.func/src/lib/ai.js",
-    "messages": [
-      "@typescript-eslint/no-unused-vars"
-    ]
+    "messages": ["@typescript-eslint/no-unused-vars"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/.vercel/output/functions/api/generate-insight.func/src/lib/carbon-engine.js",
-    "messages": [
-      "no-useless-assignment",
-      "no-useless-assignment"
-    ]
+    "messages": ["no-useless-assignment", "no-useless-assignment"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/.vercel/output/static/assets/index-CXmIXVop.js",
@@ -1774,9 +1766,7 @@
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/api/generate-insight.ts",
-    "messages": [
-      "@typescript-eslint/no-unused-vars"
-    ]
+    "messages": ["@typescript-eslint/no-unused-vars"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/clean_docs.js",
@@ -1801,41 +1791,27 @@
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/components/FootprintForm.tsx",
-    "messages": [
-      "@typescript-eslint/no-unused-vars",
-      "@typescript-eslint/no-unused-vars"
-    ]
+    "messages": ["@typescript-eslint/no-unused-vars", "@typescript-eslint/no-unused-vars"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/components/ToastProvider.tsx",
-    "messages": [
-      "react-refresh/only-export-components"
-    ]
+    "messages": ["react-refresh/only-export-components"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/components/results/GreenNextStep.tsx",
-    "messages": [
-      "react-hooks/set-state-in-effect"
-    ]
+    "messages": ["react-hooks/set-state-in-effect"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/components/results/ReductionPlan.tsx",
-    "messages": [
-      "react-hooks/set-state-in-effect"
-    ]
+    "messages": ["react-hooks/set-state-in-effect"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/lib/ai.ts",
-    "messages": [
-      "@typescript-eslint/no-unused-vars"
-    ]
+    "messages": ["@typescript-eslint/no-unused-vars"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/lib/carbon-engine.ts",
-    "messages": [
-      "no-useless-assignment",
-      "no-useless-assignment"
-    ]
+    "messages": ["no-useless-assignment", "no-useless-assignment"]
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/lib/storage.ts",
@@ -1847,9 +1823,6 @@
   },
   {
     "file": "/Users/tzar/Desktop/carbonwise/src/tests/storage.test.ts",
-    "messages": [
-      "@typescript-eslint/no-unused-vars",
-      "@typescript-eslint/no-unused-vars"
-    ]
+    "messages": ["@typescript-eslint/no-unused-vars", "@typescript-eslint/no-unused-vars"]
   }
 ]

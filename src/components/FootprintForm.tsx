@@ -35,10 +35,7 @@ const DEFAULT_FORM_DATA: FootprintInput = {
   optionalNote: '',
 };
 
-export default function FootprintForm({
-  onSubmitSuccess,
-  initialData,
-}: FootprintFormProps) {
+export default function FootprintForm({ onSubmitSuccess, initialData }: FootprintFormProps) {
   const [step, setStep] = useState<number>(1);
   const [formData, setFormData] = useState<FootprintInput>({
     ...DEFAULT_FORM_DATA,

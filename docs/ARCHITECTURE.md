@@ -21,7 +21,7 @@ The platform is designed around strict separation of concerns, pure functional l
                                   v
                    +--------------+---------------+
                    |        Gemini API        |
-                   |      (gemini-3.5-flash)      |
+                   |      (gemini-2.0-flash)      |
                    +------------------------------+
 ```
 

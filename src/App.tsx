@@ -36,11 +36,11 @@ function MainAppShell() {
   const [view, setView] = useState<AppViewState>('landing');
   // Initialize state directly from local storage for SPA
   const [localHistory, setLocalHistory] = useState<LocalHistory>(() => getLocalHistory());
-  
+
   const [activeInput, setActiveInput] = useState<FootprintInput | null>(() => {
     return localHistory.checkIns.length > 0 ? localHistory.checkIns[0].input : null;
   });
-  
+
   const [activeResult, setActiveResult] = useState<CarbonResult | null>(() => {
     return localHistory.checkIns.length > 0 ? localHistory.checkIns[0].result : null;
   });

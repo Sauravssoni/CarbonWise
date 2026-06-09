@@ -22,11 +22,11 @@ Designed using a meticulous, slate-and-emerald minimalist theme, **CarbonWise** 
 
 - **Custom Full-Stack Server** — An Vercel Serverless backend route bound natively with Vite.
 - **Deterministic Fuel Calculation Engine** — Developed with transparent reference benchmarks (DEFRA 2023, IEA Emission Factors v1.4) ensuring mathematically stable baselines.
-- **Smart Gemini AI Integration** — When enabled, the server leverages **Gemini 3.5 Flash** behind secure `/api/*` proxies to generate fully personalized, contextual insights and motivational nudges based on user-entered targets—falling back gracefully to the deterministic model on network breaks.
+- **Smart Gemini AI Integration** — Optional Gemini insight via the configured server-side model; deterministic fallback remains available when no API key is set or the model call fails.
 - **Local Persistence Loop** — Maintains offline-first privacy by caching results and checkins inside local storage, rendering live timelines, progress metrics, and action commitments.
 - **Flawless UI & Micro-animations** — Fully accessible keyboard navigation, gorgeous charts powered by SVG, and elegant touch target padding.
 
-Tackling carbon emissions doesn't start with overwhelming guilt—it starts with **precise awareness**. 100% of our test suites (32 unit tests) pass with flying colors and zero linter warnings.
+Tackling carbon emissions doesn't start with overwhelming guilt—it starts with **precise awareness**. ESLint + TypeScript checks pass locally, and 50 automated tests cover validation, local storage resilience, carbon calculations, impact translation, recommendation logic, accessibility-sensitive flows, and AI/API fallback behavior.
 
 GitHub: https://github.com/Sauravssoni/CarbonWise.git
 Live: [Deployed Link]

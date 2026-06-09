@@ -58,7 +58,7 @@ function sanitizeAiResponse(response: AIResponse): AIResponse {
 }
 
 /**
- * Executes a Gemini 3.5 Flash chat call safely, validating the response schema
+ * Executes a Gemini chat call safely, validating the response schema
  * and failing back gracefully on any error/timeout.
  */
 export async function getAiInsight(
