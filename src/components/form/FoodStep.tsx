@@ -6,17 +6,50 @@ interface FoodStepProps {
 }
 
 const DIET_OPTIONS: { val: DietType; label: string; description: string; icon: string }[] = [
-  { val: 'Plant-forward', label: 'Plant-forward (Vegan)', description: 'Entirely plant-based or dairy/egg exclusionary', icon: '🌱' },
-  { val: 'Vegetarian', label: 'Vegetarian', description: 'No red or white meat, includes dairy/plants', icon: '🥑' },
-  { val: 'Eggetarian', description: 'Consumes dairy and eggs, excludes red/white meats', label: 'Eggetarian', icon: '🍳' },
-  { val: 'Mixed', label: 'Mixed (Regular)', description: 'Average balanced diet with poultry/fish/red meat', icon: '🍱' },
-  { val: 'High meat', label: 'High Meat', description: 'Heavy daily consumption of poultry, beef, or pork', icon: '🥩' },
+  {
+    val: 'Plant-forward',
+    label: 'Plant-forward (Vegan)',
+    description: 'Entirely plant-based or dairy/egg exclusionary',
+    icon: '🌱',
+  },
+  {
+    val: 'Vegetarian',
+    label: 'Vegetarian',
+    description: 'No red or white meat, includes dairy/plants',
+    icon: '🥑',
+  },
+  {
+    val: 'Eggetarian',
+    description: 'Consumes dairy and eggs, excludes red/white meats',
+    label: 'Eggetarian',
+    icon: '🍳',
+  },
+  {
+    val: 'Mixed',
+    label: 'Mixed (Regular)',
+    description: 'Average balanced diet with poultry/fish/red meat',
+    icon: '🍱',
+  },
+  {
+    val: 'High meat',
+    label: 'High Meat',
+    description: 'Heavy daily consumption of poultry, beef, or pork',
+    icon: '🥩',
+  },
 ];
 
 const WASTE_OPTIONS: { val: FrequencyLevel; label: string; description: string }[] = [
   { val: 'Rare', label: 'Rare / Zero Waste', description: 'Leftovers composted, careful planning' },
-  { val: 'Sometimes', label: 'Sometimes', description: 'Occasionally discard leftovers or vegetables' },
-  { val: 'Often', label: 'Often Waste', description: 'Regular food waste or clearing shelf additions' },
+  {
+    val: 'Sometimes',
+    label: 'Sometimes',
+    description: 'Occasionally discard leftovers or vegetables',
+  },
+  {
+    val: 'Often',
+    label: 'Often Waste',
+    description: 'Regular food waste or clearing shelf additions',
+  },
 ];
 
 const EATING_OUT_OPTIONS: { val: 'Rare' | 'Weekly' | 'Daily'; label: string; desc: string }[] = [
@@ -34,9 +67,12 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
     <fieldset className="space-y-6 animate-fade-in border-none p-0 m-0">
       <legend className="sr-only">Step 3: Food and Nutrition</legend>
       <div>
-        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Step 3: Food & Nutrition</h3>
+        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">
+          Step 3: Food & Nutrition
+        </h3>
         <p className="text-slate-400 text-xs mt-1">
-          Agriculture and nutrition emit nearly a quarter of global carbon emissions. Diet choices can cut this in half.
+          Agriculture and nutrition emit nearly a quarter of global carbon emissions. Diet choices
+          can cut this in half.
         </p>
       </div>
 
@@ -45,7 +81,11 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
         <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
           Primary Diet Choice <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" role="radiogroup" aria-label="Select diet choice">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+          role="radiogroup"
+          aria-label="Select diet choice"
+        >
           {DIET_OPTIONS.map((opt) => {
             const isSelected = currentDiet === opt.val;
             return (
@@ -61,10 +101,14 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
                 role="radio"
                 aria-checked={isSelected}
               >
-                <span className="text-2xl mr-3 mt-1 select-none" aria-hidden="true">{opt.icon}</span>
+                <span className="text-2xl mr-3 mt-1 select-none" aria-hidden="true">
+                  {opt.icon}
+                </span>
                 <div>
                   <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                  <div className="text-xs text-slate-404 mt-0.5 leading-relaxed">{opt.description}</div>
+                  <div className="text-xs text-slate-404 mt-0.5 leading-relaxed">
+                    {opt.description}
+                  </div>
                 </div>
               </button>
             );
@@ -77,7 +121,11 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
         <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
           Typical Food & Ingredients Waste <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="radiogroup" aria-label="Select food waste frequency">
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-3"
+          role="radiogroup"
+          aria-label="Select food waste frequency"
+        >
           {WASTE_OPTIONS.map((opt) => {
             const isSelected = currentWaste === opt.val;
             return (
@@ -106,7 +154,11 @@ export default function FoodStep({ data, onChange }: FoodStepProps) {
         <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
           Takeaway & Dining Out Frequency <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="radiogroup" aria-label="Select dining out frequency">
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-3"
+          role="radiogroup"
+          aria-label="Select dining out frequency"
+        >
           {EATING_OUT_OPTIONS.map((opt) => {
             const isSelected = currentOut === opt.val;
             return (

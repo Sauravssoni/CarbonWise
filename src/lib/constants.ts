@@ -65,16 +65,33 @@ export const EMISSION_FACTORS_RECYCLING = {
 
 // Footprint Daily Bands (kg CO2e per day)
 export const FOOTPRINT_BANDS = {
-  Light: { max: 5.0, label: 'Light', description: 'Exceptional! Your footprint is well below critical climate targets.' },
-  Moderate: { max: 12.0, label: 'Moderate', description: 'Good, but there are distinct opportunities to optimize your lifestyle footprint.' },
-  High: { max: 22.0, label: 'High', description: 'Above average. Small, daily choices here can make a massive structural reduction.' },
-  'Very High': { max: Infinity, label: 'Very High', description: 'Heavy footprint. Substantial potential to slash emissions through simple habits.' },
+  Light: {
+    max: 5.0,
+    label: 'Light',
+    description: 'Exceptional! Your footprint is well below critical climate targets.',
+  },
+  Moderate: {
+    max: 12.0,
+    label: 'Moderate',
+    description: 'Good, but there are distinct opportunities to optimize your lifestyle footprint.',
+  },
+  High: {
+    max: 22.0,
+    label: 'High',
+    description:
+      'Above average. Small, daily choices here can make a massive structural reduction.',
+  },
+  'Very High': {
+    max: Infinity,
+    label: 'Very High',
+    description: 'Heavy footprint. Substantial potential to slash emissions through simple habits.',
+  },
 } as const;
 
 // Conversions for relatable equivalents (Per 1 kg of CO2e)
 export const TRANSLATION_FACTORS = {
-  carKmAvoided: 5.5,        // 1 kg CO2e is equivalent to ~5.5 km of car travel
-  smartphoneCharges: 120,   // 1 kg CO2e is equivalent to ~120 full smartphone charges
-  acHoursSaved: 1.6,        // 1 kg CO2e is equivalent to ~1.6 hours of split AC operation
+  carKmAvoided: 5.5, // 1 kg CO2e is equivalent to ~5.5 km of car travel
+  smartphoneCharges: 120, // 1 kg CO2e is equivalent to ~120 full smartphone charges
+  acHoursSaved: 1.6, // 1 kg CO2e is equivalent to ~1.6 hours of split AC operation
   cupsOfChaiKettleBoils: 66, // 1 kg CO2e is equivalent to ~66 times boiling a kettle for tea/coffee
 } as const;

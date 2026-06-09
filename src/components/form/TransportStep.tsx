@@ -26,7 +26,9 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
     <fieldset className="space-y-6 border-none p-0 m-0">
       <legend className="sr-only">Step 1: Commuting and Transport</legend>
       <div>
-        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Step 1: Commuting & Transport</h3>
+        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">
+          Step 1: Commuting & Transport
+        </h3>
         <p className="text-slate-400 text-xs mt-1">
           Transportation lifestyle accounts for nearly 30% of individual emissions globally.
         </p>
@@ -37,7 +39,11 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
         <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
           Primary Commute Mode <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" role="radiogroup" aria-label="Select commute mode">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+          role="radiogroup"
+          aria-label="Select commute mode"
+        >
           {COMMUTE_OPTIONS.map((opt) => {
             const isSelected = currentMode === opt.mode;
             return (
@@ -53,10 +59,14 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
                 role="radio"
                 aria-checked={isSelected}
               >
-                <span className="text-2xl mr-3 mt-1 select-none" aria-hidden="true">{opt.icon}</span>
+                <span className="text-2xl mr-3 mt-1 select-none" aria-hidden="true">
+                  {opt.icon}
+                </span>
                 <div>
                   <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                  <div className="text-xs text-slate-400 mt-0.5 leading-normal">{opt.description}</div>
+                  <div className="text-xs text-slate-400 mt-0.5 leading-normal">
+                    {opt.description}
+                  </div>
                 </div>
               </button>
             );
@@ -67,7 +77,11 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
       {/* Distance Slider / Input */}
       <div className="space-y-3">
         <div className="flex justify-between items-center">
-          <label id="distance-label" htmlFor="distance-slider" className="text-xs font-bold text-slate-600 uppercase tracking-wider">
+          <label
+            id="distance-label"
+            htmlFor="distance-slider"
+            className="text-xs font-bold text-slate-600 uppercase tracking-wider"
+          >
             Daily Commute Distance <span className="text-red-500">*</span>
           </label>
           <span className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-150 px-2.5 py-1 rounded-lg">
@@ -93,7 +107,9 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
             min="0"
             max="1000"
             value={currentDistance}
-            onChange={(e) => onChange({ distancePerDayKm: Math.min(1000, Math.max(0, Number(e.target.value))) })}
+            onChange={(e) =>
+              onChange({ distancePerDayKm: Math.min(1000, Math.max(0, Number(e.target.value))) })
+            }
             className="w-24 text-center border border-slate-200 rounded-xl px-2 py-1.5 text-xs bg-white text-slate-800 font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
@@ -103,8 +119,12 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
       {currentMode === 'Car' && (
         <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between">
           <div>
-            <div className="text-xs font-bold text-slate-800 uppercase tracking-wide">Regular vehicle ride-share?</div>
-            <p className="text-xs text-slate-400 leading-normal mt-0.5">Shared transport splits the daily fuel output factor.</p>
+            <div className="text-xs font-bold text-slate-800 uppercase tracking-wide">
+              Regular vehicle ride-share?
+            </div>
+            <p className="text-xs text-slate-400 leading-normal mt-0.5">
+              Shared transport splits the daily fuel output factor.
+            </p>
           </div>
           <button
             type="button"
@@ -127,8 +147,12 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
 
       {/* Optional flights */}
       <div className="space-y-3">
-        <label htmlFor="flights-input" className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
-          Flights Taken This Month <span className="text-slate-400 font-normal text-xs normal-case">(Optional)</span>
+        <label
+          htmlFor="flights-input"
+          className="block text-xs font-bold text-slate-600 uppercase tracking-wider"
+        >
+          Flights Taken This Month{' '}
+          <span className="text-slate-400 font-normal text-xs normal-case">(Optional)</span>
         </label>
         <div className="flex items-center gap-2.5 bg-slate-50 border border-slate-200 rounded-xl p-3 max-w-sm">
           <Plane className="w-4 h-4 text-slate-400 shrink-0" aria-hidden="true" />
@@ -139,11 +163,15 @@ export default function TransportStep({ data, onChange }: TransportStepProps) {
             max="100"
             placeholder="0"
             value={currentFlights || ''}
-            onChange={(e) => onChange({ flightsThisMonth: Math.min(100, Math.max(0, Number(e.target.value))) })}
+            onChange={(e) =>
+              onChange({ flightsThisMonth: Math.min(100, Math.max(0, Number(e.target.value))) })
+            }
             className="block w-full bg-transparent text-xs text-slate-800 border-none outline-none focus:ring-0 placeholder-slate-400"
           />
         </div>
-        <p className="text-xs text-slate-400 tracking-wide uppercase">Appending +150 kg CO2e is computed per short-haul flight.</p>
+        <p className="text-xs text-slate-400 tracking-wide uppercase">
+          Appending +150 kg CO2e is computed per short-haul flight.
+        </p>
       </div>
     </fieldset>
   );

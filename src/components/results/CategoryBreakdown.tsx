@@ -19,8 +19,12 @@ export default function CategoryBreakdown({ result }: CategoryBreakdownProps) {
   return (
     <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6 flex-1 flex flex-col justify-between">
       <div>
-        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Category Breakdown</h3>
-        <p className="text-xs text-slate-400">Daily weight distribution calculated by activity segment.</p>
+        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">
+          Category Breakdown
+        </h3>
+        <p className="text-xs text-slate-400">
+          Daily weight distribution calculated by activity segment.
+        </p>
       </div>
 
       {/* Categories stack items */}
@@ -35,7 +39,10 @@ export default function CategoryBreakdown({ result }: CategoryBreakdownProps) {
             <div key={catKey} className="space-y-2">
               <div className="flex justify-between items-baseline text-xs font-semibold">
                 <span className="text-slate-600 uppercase tracking-wide flex items-center gap-1.5">
-                  <Icon className="w-3.5 h-3.5 text-slate-500 uppercase tracking-wide" aria-hidden="true" />
+                  <Icon
+                    className="w-3.5 h-3.5 text-slate-500 uppercase tracking-wide"
+                    aria-hidden="true"
+                  />
                   {schema.label}
                 </span>
                 <span className="text-slate-900 font-mono">

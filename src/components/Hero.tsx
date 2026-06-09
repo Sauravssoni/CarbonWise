@@ -25,12 +25,14 @@ export default function Hero({ onStartCheck, onTryDemo }: HeroProps) {
 
         {/* Tagline */}
         <p className="text-lg sm:text-xl font-light text-slate-700 tracking-tight max-w-xl mx-auto">
-          Understand your daily footprints, and trim down emissions structure one realistic action at a time.
+          Understand your daily footprints, and trim down emissions structure one realistic action
+          at a time.
         </p>
 
         {/* Description */}
         <p className="text-xs sm:text-sm text-slate-400 max-w-lg mx-auto px-4 uppercase tracking-wider">
-          Estimating transport, energy, nutrition and consumer goods under DEFRA-compliant benchmarks.
+          Estimating transport, energy, nutrition and consumer goods under DEFRA-compliant
+          benchmarks.
         </p>
       </div>
 

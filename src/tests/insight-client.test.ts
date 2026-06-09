@@ -37,7 +37,9 @@ const MOCK_INPUT: FootprintInput = {
 };
 
 /** Minimal valid CarbonResult for each driver category */
-function mockResultWithDriver(driver: 'transport' | 'energy' | 'food' | 'consumption'): CarbonResult {
+function mockResultWithDriver(
+  driver: 'transport' | 'energy' | 'food' | 'consumption'
+): CarbonResult {
   return {
     dailyTotal: 12.5,
     weeklyTotal: 87.5,
@@ -81,7 +83,10 @@ describe('buildLocalInsight', () => {
 
   it('always returns all required fields', () => {
     const drivers: Array<'transport' | 'energy' | 'food' | 'consumption'> = [
-      'transport', 'energy', 'food', 'consumption',
+      'transport',
+      'energy',
+      'food',
+      'consumption',
     ];
     for (const driver of drivers) {
       const insight = buildLocalInsight(MOCK_INPUT, mockResultWithDriver(driver));
@@ -120,19 +125,23 @@ describe('isValidInsightResponse', () => {
   });
 
   it('returns false for empty string fields', () => {
-    expect(isValidInsightResponse({
-      personalInsight: '',
-      motivationalNudge: 'ok',
-      customAction: 'ok',
-    })).toBe(false);
+    expect(
+      isValidInsightResponse({
+        personalInsight: '',
+        motivationalNudge: 'ok',
+        customAction: 'ok',
+      })
+    ).toBe(false);
   });
 
   it('returns false for non-string fields', () => {
-    expect(isValidInsightResponse({
-      personalInsight: 123,
-      motivationalNudge: 'ok',
-      customAction: 'ok',
-    })).toBe(false);
+    expect(
+      isValidInsightResponse({
+        personalInsight: 123,
+        motivationalNudge: 'ok',
+        customAction: 'ok',
+      })
+    ).toBe(false);
   });
 });
 

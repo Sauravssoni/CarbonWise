@@ -8,7 +8,7 @@ import type { FootprintInput, CarbonResult, AIResponse } from '../types.js';
 // Deterministic engine fallback
 export function getDeterministicInsight(input: FootprintInput, result: CarbonResult): AIResponse {
   const driver = result.biggestImpactDriver;
-  
+
   if (driver === 'transport') {
     return {
       personalInsight: `Your transport choices represent your biggest leverage point, driven by a travel total of ${input.distancePerDayKm || 0} km/day.`,
@@ -75,7 +75,7 @@ export async function getAiInsight(
 
   try {
     const ai = new GoogleGenAI({ apiKey });
-    
+
     const prompt = `You are a carbon footprint expert. Analyze this individual's lifestyle:
 - Commute: ${input.commuteMode} for ${input.distancePerDayKm} km/day (Carpool: ${input.carpool ? 'Yes' : 'No'})
 - Air Travel: ${input.flightsThisMonth} flights this month
@@ -120,7 +120,11 @@ Return a JSON object conforming exactly to this schema:
     });
 
     const parsedContent = JSON.parse(response.text || '{}');
-    if (parsedContent.personalInsight && parsedContent.motivationalNudge && parsedContent.customAction) {
+    if (
+      parsedContent.personalInsight &&
+      parsedContent.motivationalNudge &&
+      parsedContent.customAction
+    ) {
       const sanitized = sanitizeAiResponse({
         personalInsight: String(parsedContent.personalInsight),
         motivationalNudge: String(parsedContent.motivationalNudge),
@@ -131,9 +135,9 @@ Return a JSON object conforming exactly to this schema:
         ...sanitized,
       };
     }
-    
+
     throw new Error('AI response is missing standard JSON properties.');
-  } catch (error) {
+  } catch (_error) {
     // Graceful fallback
     return {
       source: 'deterministic_fallback',

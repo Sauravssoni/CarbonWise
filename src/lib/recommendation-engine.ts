@@ -9,7 +9,7 @@ import { FootprintInput, ActionItem } from '../types.js';
  */
 export function generateGreenNextStep(input: FootprintInput): ActionItem {
   // Determine highest priority driver based on input values
-  
+
   // 1. CAR COMMUTER
   if (input.commuteMode === 'Car' && input.distancePerDayKm > 0) {
     return {
@@ -21,7 +21,7 @@ export function generateGreenNextStep(input: FootprintInput): ActionItem {
       completed: false,
     };
   }
-  
+
   // 2. AC INTENSIVE
   if (input.acUsage === 'High' || input.acUsage === 'Medium') {
     return {
@@ -86,7 +86,7 @@ export function generateGreenNextStep(input: FootprintInput): ActionItem {
  */
 export function generateReductionPlan(input: FootprintInput): ActionItem[] {
   const plan: ActionItem[] = [];
-  
+
   // 1. EASIEST (Low effort, quick payback)
   if (input.foodWaste === 'Often' || input.foodWaste === 'Sometimes') {
     plan.push({
@@ -112,14 +112,15 @@ export function generateReductionPlan(input: FootprintInput): ActionItem[] {
   // Determine which is their heaviest raw input
   const travelDailyEmissions = input.distancePerDayKm * (input.commuteMode === 'Car' ? 0.18 : 0.05);
   const clothesMonthlyEmissions = input.clothingPurchasesMonthly * 8.0;
-  
+
   if (travelDailyEmissions > 5) {
     plan.push({
       id: 'plan-impact-transport',
       category: 'transport',
-      text: input.commuteMode === 'Car' 
-        ? 'Car-share, carpool, or take the bus for your primary commute on two days.'
-        : 'Optimize flight emissions by choosing direct flights or rail connections for your next holiday.',
+      text:
+        input.commuteMode === 'Car'
+          ? 'Car-share, carpool, or take the bus for your primary commute on two days.'
+          : 'Optimize flight emissions by choosing direct flights or rail connections for your next holiday.',
       impactEstimatedKg: Math.round(travelDailyEmissions * 2 * 10) / 10,
       effort: 'Aggressive',
       completed: false,

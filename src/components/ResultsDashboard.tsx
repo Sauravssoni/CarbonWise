@@ -16,6 +16,7 @@ interface ResultsDashboardProps {
   result: CarbonResult;
   onNewCheckIn: () => void;
   onRefreshHistory: () => void;
+  onClearHistory: () => void;
   localHistory: LocalHistory;
 }
 
@@ -24,6 +25,7 @@ export default function ResultsDashboard({
   result,
   onNewCheckIn,
   onRefreshHistory,
+  onClearHistory,
   localHistory,
 }: ResultsDashboardProps) {
   const [aiInsight, setAiInsight] = useState<InsightResponse | null>(null);
@@ -42,14 +44,16 @@ export default function ResultsDashboard({
     }
 
     loadInsight();
-    
+
     // Focus management for accessibility
     const heading = document.getElementById('results-heading');
     if (heading) {
       heading.focus();
     }
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [input, result]);
 
   return (
@@ -97,24 +101,27 @@ export default function ResultsDashboard({
             <blockquote className="text-sm font-semibold text-slate-100 leading-relaxed font-sans italic">
               "{aiInsight.personalInsight}"
             </blockquote>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              {aiInsight.motivationalNudge}
-            </p>
+            <p className="text-xs text-slate-400 leading-relaxed">{aiInsight.motivationalNudge}</p>
             {aiInsight.customAction && (
               <div className="pt-2 flex flex-wrap gap-2 items-center">
                 <span className="text-xs font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-900 px-2 py-0.5 rounded uppercase tracking-wider select-none">
                   Task Suggestion
                 </span>
-                <span className="text-xs font-semibold text-slate-200">"{aiInsight.customAction}"</span>
+                <span className="text-xs font-semibold text-slate-200">
+                  "{aiInsight.customAction}"
+                </span>
               </div>
             )}
             {aiInsight.source !== 'gemini' && (
               <p className="text-xs text-slate-400 italic">
-                CarbonWise generated this using transparent local rules, so your results still work without an AI key.
+                CarbonWise generated this using transparent local rules, so your results still work
+                without an AI key.
               </p>
             )}
             <div className="flex justify-end pt-1 text-xs text-slate-500 uppercase tracking-wider select-none">
-              {aiInsight.source === 'gemini' ? 'AI-enhanced insight' : 'Local deterministic insight'}
+              {aiInsight.source === 'gemini'
+                ? 'AI-enhanced insight'
+                : 'Local deterministic insight'}
             </div>
           </div>
         ) : (
@@ -142,7 +149,7 @@ export default function ResultsDashboard({
         {/* Right Column: Actions & Progress Tracking */}
         <div className="flex flex-col gap-6">
           <GreenNextStep input={input} onRefreshHistory={onRefreshHistory} />
-          <ProgressDashboard history={localHistory} onClear={onRefreshHistory} />
+          <ProgressDashboard history={localHistory} onClear={onClearHistory} />
           <ReductionPlan input={input} onRefreshHistory={onRefreshHistory} />
         </div>
       </div>

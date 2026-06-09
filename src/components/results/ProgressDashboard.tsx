@@ -20,8 +20,12 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
     <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap pb-4 border-b border-slate-100">
         <div>
-          <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-0.5">Local Progress</h3>
-          <p className="text-xs text-slate-400">Cached on device. Zero external servers required.</p>
+          <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-0.5">
+            Local Progress
+          </h3>
+          <p className="text-xs text-slate-400">
+            Cached on device. Zero external servers required.
+          </p>
         </div>
         {checkInCount > 0 && !showConfirm && (
           <button
@@ -65,7 +69,9 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
       {checkInCount === 0 ? (
         <div className="p-8 border border-dashed border-slate-200 rounded-2xl text-center space-y-2 select-none">
           <Calendar className="w-8 h-8 text-slate-300 mx-auto" aria-hidden="true" />
-          <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest">No History Recalled</h4>
+          <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest">
+            No History Recalled
+          </h4>
           <p className="text-xs text-slate-400 max-w-sm mx-auto">
             Your metrics log checks will accumulate here to record lifestyle changes over time.
           </p>
@@ -75,15 +81,29 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
           {/* Custom Weekly Local Progress component from the Sleek Design HTML */}
           <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-emerald-100 border border-emerald-200 flex items-center justify-center font-bold text-emerald-700 text-xs">M</div>
-              <div className="w-8 h-8 rounded-lg bg-emerald-100 border border-emerald-200 flex items-center justify-center font-bold text-emerald-700 text-xs">T</div>
-              <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">W</div>
-              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-300 text-xs">T</div>
-              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-300 text-xs">F</div>
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 border border-emerald-200 flex items-center justify-center font-bold text-emerald-700 text-xs">
+                M
+              </div>
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 border border-emerald-200 flex items-center justify-center font-bold text-emerald-700 text-xs">
+                T
+              </div>
+              <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                W
+              </div>
+              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-300 text-xs">
+                T
+              </div>
+              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-300 text-xs">
+                F
+              </div>
             </div>
             <div className="text-center sm:text-right">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">Habit Streak</p>
-              <p className="text-lg font-bold text-emerald-600 mt-1">{currentStreak} Days Tracked</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">
+                Habit Streak
+              </p>
+              <p className="text-lg font-bold text-emerald-600 mt-1">
+                {currentStreak} Days Tracked
+              </p>
             </div>
           </div>
 
@@ -93,7 +113,9 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
-                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Total Checks</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+                  Total Checks
+                </span>
               </div>
               <div className="text-base font-bold text-slate-800">{checkInCount} audits</div>
             </div>
@@ -102,25 +124,35 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Flame className="w-4 h-4 text-emerald-500 shrink-0" aria-hidden="true" />
-                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Commitments</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+                  Commitments
+                </span>
               </div>
-              <div className="text-base font-bold text-slate-800">{history.completedActionIds.length} logged</div>
+              <div className="text-base font-bold text-slate-800">
+                {history.completedActionIds.length} logged
+              </div>
             </div>
 
             {/* Stat 3 */}
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
-                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Best Area</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+                  Best Area
+                </span>
               </div>
-              <div className="text-xs font-bold text-slate-800 truncate" title={bestCategory}>{bestCategory}</div>
+              <div className="text-xs font-bold text-slate-800 truncate" title={bestCategory}>
+                {bestCategory}
+              </div>
             </div>
 
             {/* Stat 4 */}
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
-                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">Weekly AVG</span>
+                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+                  Weekly AVG
+                </span>
               </div>
               <div className="text-xs font-bold font-mono text-slate-800">
                 {recentCheck ? formatCO2(recentCheck.result.weeklyTotal) : '0.0 kg'}
@@ -130,8 +162,15 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
 
           {/* Historical Log */}
           <div className="space-y-3 pt-2">
-            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Chronology Logs</h4>
-            <div className="divide-y divide-slate-100 max-h-48 overflow-y-auto rounded-2xl border border-slate-200 bg-white" role="log" tabIndex={0} aria-label="Check-in history log">
+            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+              Chronology Logs
+            </h4>
+            <div
+              className="divide-y divide-slate-100 max-h-48 overflow-y-auto rounded-2xl border border-slate-200 bg-white"
+              role="log"
+              tabIndex={0}
+              aria-label="Check-in history log"
+            >
               {history.checkIns.map((record) => {
                 const dateLabel = new Date(record.timestamp).toLocaleDateString(undefined, {
                   month: 'short',
@@ -140,11 +179,19 @@ export default function ProgressDashboard({ history, onClear }: ProgressDashboar
                   minute: '2-digit',
                 });
                 return (
-                  <div key={record.id} className="p-3.5 flex justify-between items-center text-xs hover:bg-slate-50/50 transition-all">
+                  <div
+                    key={record.id}
+                    className="p-3.5 flex justify-between items-center text-xs hover:bg-slate-50/50 transition-all"
+                  >
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full shrink-0" aria-hidden="true" />
+                      <span
+                        className="w-2 h-2 bg-emerald-500 rounded-full shrink-0"
+                        aria-hidden="true"
+                      />
                       <div>
-                        <div className="font-bold text-slate-800">{record.result.footprintBand} footprint band</div>
+                        <div className="font-bold text-slate-800">
+                          {record.result.footprintBand} footprint band
+                        </div>
                         <div className="text-xs text-slate-400 mt-0.5">{dateLabel}</div>
                       </div>
                     </div>

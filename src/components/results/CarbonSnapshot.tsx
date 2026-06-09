@@ -38,20 +38,28 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
   return (
     <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6 flex flex-col justify-between">
       <div>
-        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-4">Carbon Snapshot</h3>
-        
+        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-4">
+          Carbon Snapshot
+        </h3>
+
         {/* Core Sleek Metric Display */}
         <div className="flex flex-col items-center justify-center text-center py-6 border-y border-slate-100 bg-slate-50/40 rounded-2xl p-4">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Daily Estimated Footprint</span>
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+            Daily Estimated Footprint
+          </span>
           <div className="flex items-baseline gap-1 select-all">
             <span className="text-6xl sm:text-7xl font-light text-slate-900 tracking-tighter">
               {dailyTotal.toFixed(1)}
             </span>
             <span className="text-lg font-medium text-slate-500">kg CO2e</span>
           </div>
-          
-          <div className={`mt-4 px-4 py-1 rounded-full border flex items-center gap-2 select-none ${bandStyles.badge}`}>
-            <span className="text-xs font-semibold uppercase tracking-wider">{footprintBand} Band</span>
+
+          <div
+            className={`mt-4 px-4 py-1 rounded-full border flex items-center gap-2 select-none ${bandStyles.badge}`}
+          >
+            <span className="text-xs font-semibold uppercase tracking-wider">
+              {footprintBand} Band
+            </span>
           </div>
         </div>
       </div>
@@ -59,13 +67,17 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
       {/* Grid containing other projections */}
       <div className="grid grid-cols-2 gap-4 text-center">
         <div className="p-3 bg-slate-50/30 rounded-xl border border-slate-100">
-          <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">Weekly Output</div>
+          <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">
+            Weekly Output
+          </div>
           <div className="text-lg font-bold text-slate-800 mt-1 select-all">
             {formatCO2(weeklyTotal)}
           </div>
         </div>
         <div className="p-3 bg-slate-50/30 rounded-xl border border-slate-100">
-          <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">Monthly Output</div>
+          <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">
+            Monthly Output
+          </div>
           <div className="text-lg font-bold text-slate-800 mt-1 select-all">
             {formatCO2(monthlyTotal)}
           </div>
@@ -78,7 +90,8 @@ export default function CarbonSnapshot({ result }: CarbonSnapshotProps) {
         <div>
           <div className={`font-bold text-xs ${bandStyles.text}`}>Assessment: {bandInfo.label}</div>
           <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-            {bandInfo.description} Lowering your emissions through high-impact action choices will optimize your profile index.
+            {bandInfo.description} Lowering your emissions through high-impact action choices will
+            optimize your profile index.
           </p>
         </div>
       </div>

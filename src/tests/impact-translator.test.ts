@@ -13,7 +13,7 @@ describe('Relatable Equivalents Translation Engine', () => {
     // acHoursSaved ~ 16 hours
     // cupsOfChaiKettleBoils ~ 660 kettles
     const eq = translateCarbonImpact(10);
-    
+
     expect(eq.carKmAvoided).toBe(55.0);
     expect(eq.smartphoneCharges).toBe(1200);
     expect(eq.acHoursSaved).toBe(16.0);

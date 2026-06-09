@@ -45,7 +45,9 @@ We incorporate 50 automated tests covering validation, storage, carbon calculati
    - Guarantees `fetchInsightSafely` never throws regardless of failure mode.
 
 ### Running the verification suites
+
 ```bash
 npm run test
 ```
+
 This runs the entire Vitest test suite and outputs the status logs.

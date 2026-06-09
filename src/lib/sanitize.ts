@@ -7,10 +7,10 @@
  */
 export function sanitizeString(input: string, maxLength: number = 200): string {
   if (!input) return '';
-  
+
   // Truncate to maximum length
   let sanitized = input.slice(0, maxLength);
-  
+
   // Escape HTML entities
   sanitized = sanitized
     .replace(/&/g, '&amp;')
@@ -19,7 +19,7 @@ export function sanitizeString(input: string, maxLength: number = 200): string {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#x27;')
     .replace(/\//g, '&#x2F;');
-    
+
   return sanitized;
 }
 

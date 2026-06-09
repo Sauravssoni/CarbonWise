@@ -5,12 +5,14 @@ CarbonWise is designed to be accessible to all users, following WCAG 2.1 AA guid
 ## Implemented Accessibility Features
 
 ### Keyboard Navigation
+
 - [x] Skip-to-main-content link on every page load
 - [x] All interactive elements (buttons, radio groups, sliders, inputs) are keyboard-operable
 - [x] Visible `:focus-visible` rings on all focusable elements (emerald outline, 2px)
 - [x] `aria-current="page"` marks the active navigation item
 
 ### Screen Reader Support
+
 - [x] All form steps wrapped in `<fieldset>` with `<legend>` for group labeling
 - [x] Radio groups use `role="radiogroup"` with `aria-label` and `role="radio"` with `aria-checked`
 - [x] Toggle switches use `role="switch"` with `aria-checked`
@@ -21,6 +23,7 @@ CarbonWise is designed to be accessible to all users, following WCAG 2.1 AA guid
 - [x] Scrollable history log uses `role="log"` with `tabindex="0"` for keyboard access
 
 ### Semantic HTML
+
 - [x] Single `<h1>` per page
 - [x] Proper heading hierarchy (`h1` → `h2` → `h3` → `h4`)
 - [x] `<main>` landmark wraps primary content
@@ -28,12 +31,14 @@ CarbonWise is designed to be accessible to all users, following WCAG 2.1 AA guid
 - [x] `<noscript>` fallback message in `index.html`
 
 ### Motion and Visual
+
 - [x] `prefers-reduced-motion` CSS media query disables all animations and transitions
 - [x] No color-only status indicators — all states have text labels
 - [x] Focus rings visible on all interactive elements via `:focus-visible`
 - [x] Touch targets meet minimum ~44px sizing for mobile
 
 ### Forms
+
 - [x] All text/number inputs have associated `<label htmlFor>` or `aria-label`
 - [x] Range sliders have `aria-label` describing their purpose
 - [x] Required fields marked with visible asterisk and associated labels
@@ -41,6 +46,7 @@ CarbonWise is designed to be accessible to all users, following WCAG 2.1 AA guid
 - [x] Character count on text areas provides live feedback
 
 ### Error Handling
+
 - [x] Toast notifications use accessible patterns
 - [x] No color-only error indicators
 - [x] AI failure silently falls back to local deterministic insight — no error shown to user

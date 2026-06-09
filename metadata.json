@@ -2,7 +2,5 @@
   "name": "CarbonWise",
   "description": "Estimate daily carbon impact from transport, energy, food and shopping, then get one simple personalized action to reduce emissions.",
   "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -76,11 +76,12 @@ describe('Carbon Calculation Formulas', () => {
 
     const result = calculateFootprint(input);
     expect(result.biggestImpactDriver).toBe('transport');
-    
-    const sumPercent = result.percentages.transport + 
-                       result.percentages.energy + 
-                       result.percentages.food + 
-                       result.percentages.consumption;
+
+    const sumPercent =
+      result.percentages.transport +
+      result.percentages.energy +
+      result.percentages.food +
+      result.percentages.consumption;
     expect(sumPercent).toBeCloseTo(100.0, 1);
   });
 
@@ -101,4 +102,3 @@ describe('Carbon Calculation Formulas', () => {
     expect(zeroConsumption).toBe(0.0);
   });
 });
-

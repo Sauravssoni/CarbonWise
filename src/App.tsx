@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { FootprintInput, CarbonResult, LocalHistory } from './types';
 import { addCheckIn, getLocalHistory, clearStorageData } from './lib/storage';
 import { calculateFootprint } from './lib/carbon-engine';
@@ -7,7 +7,7 @@ import Hero from './components/Hero';
 import AlignmentCards from './components/AlignmentCards';
 import FootprintForm from './components/FootprintForm';
 import ResultsDashboard from './components/ResultsDashboard';
-import { Leaf, History, Sparkles, RefreshCcw } from 'lucide-react';
+import { Leaf } from 'lucide-react';
 
 type AppViewState = 'landing' | 'form' | 'results';
 
@@ -34,30 +34,23 @@ const DEMO_COMPUTE_INPUT: FootprintInput = {
 function MainAppShell() {
   const { showToast } = useToast();
   const [view, setView] = useState<AppViewState>('landing');
-  const [activeInput, setActiveInput] = useState<FootprintInput | null>(null);
-  const [activeResult, setActiveResult] = useState<CarbonResult | null>(null);
-  const [localHistory, setLocalHistory] = useState<LocalHistory>({
-    checkIns: [],
-    completedActionIds: [],
-    customActions: [],
+  // Initialize state directly from local storage for SPA
+  const [localHistory, setLocalHistory] = useState<LocalHistory>(() => getLocalHistory());
+  
+  const [activeInput, setActiveInput] = useState<FootprintInput | null>(() => {
+    return localHistory.checkIns.length > 0 ? localHistory.checkIns[0].input : null;
+  });
+  
+  const [activeResult, setActiveResult] = useState<CarbonResult | null>(() => {
+    return localHistory.checkIns.length > 0 ? localHistory.checkIns[0].result : null;
   });
 
-  // Pull local storage profiles on bootstrap
-  useEffect(() => {
-    refreshCachedState();
-  }, []);
-
-  const refreshCachedState = () => {
+  const refreshCachedState = useCallback(() => {
     const historicalData = getLocalHistory();
     setLocalHistory(historicalData);
-    
-    // Auto-load most recent calculation if page is refreshed in the middle of a results flow
-    if (historicalData.checkIns.length > 0 && !activeResult) {
-      const latest = historicalData.checkIns[0];
-      setActiveInput(latest.input);
-      setActiveResult(latest.result);
-    }
-  };
+  }, []);
+
+  // Removed effect that caused synchronous setState warnings
 
   const handleFormSubmission = (input: FootprintInput, result: CarbonResult) => {
     // Save to LocalStorage
@@ -71,7 +64,7 @@ function MainAppShell() {
 
   const handleLaunchDemo = () => {
     const computedResult = calculateFootprint(DEMO_COMPUTE_INPUT);
-    
+
     // Commit check in immediately to fulfill flow requirements
     addCheckIn(DEMO_COMPUTE_INPUT, computedResult);
     setActiveInput(DEMO_COMPUTE_INPUT);
@@ -108,7 +101,6 @@ function MainAppShell() {
             className="flex items-center gap-2 outline-none hover:opacity-90 transition-all font-sans"
             aria-label="Logo and go home"
           >
-
             <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold">
               <Leaf className="w-4 h-4 text-white" />
             </div>
@@ -116,7 +108,10 @@ function MainAppShell() {
           </button>
 
           {/* Core navigation anchors */}
-          <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-500" aria-label="Main navigation">
+          <nav
+            className="hidden md:flex gap-6 text-sm font-medium text-slate-500"
+            aria-label="Main navigation"
+          >
             <button
               onClick={() => {
                 setView('landing');
@@ -153,12 +148,16 @@ function MainAppShell() {
             {localHistory.checkIns.length > 0 ? (
               <div className="flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100 select-none">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wider">Metrics Active</span>
+                <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+                  Metrics Active
+                </span>
               </div>
             ) : (
               <div className="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 select-none">
                 <div className="w-2 h-2 rounded-full bg-slate-400"></div>
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Ready to Check</span>
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                  Ready to Check
+                </span>
               </div>
             )}
           </div>
@@ -166,13 +165,13 @@ function MainAppShell() {
       </header>
 
       {/* Main Container Stage */}
-      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-6 py-8 sm:py-12 flex flex-col justify-center">
+      <main
+        id="main-content"
+        className="flex-1 max-w-7xl w-full mx-auto px-6 py-8 sm:py-12 flex flex-col justify-center"
+      >
         {view === 'landing' && (
           <div className="space-y-12 animate-fade-in">
-            <Hero
-              onStartCheck={() => setView('form')}
-              onTryDemo={handleLaunchDemo}
-            />
+            <Hero onStartCheck={() => setView('form')} onTryDemo={handleLaunchDemo} />
             <hr className="border-t border-slate-200" />
             <div className="space-y-6">
               <h3 className="text-center text-sm font-bold text-slate-400 uppercase tracking-widest select-none">
@@ -199,6 +198,7 @@ function MainAppShell() {
             result={activeResult}
             onNewCheckIn={() => setView('form')}
             onRefreshHistory={refreshCachedState}
+            onClearHistory={handleClearEverything}
             localHistory={localHistory}
           />
         )}
@@ -207,8 +207,8 @@ function MainAppShell() {
       {/* Deep Footer branding metadata */}
       <footer className="h-14 px-8 border-t border-slate-200 bg-slate-100 flex items-center justify-center text-center select-none leading-none">
         <p className="text-xs text-slate-400 uppercase tracking-widest">
-          CarbonWise provides educational estimates, not official carbon accounting. 
-          <span className="mx-2">•</span> 
+          CarbonWise provides educational estimates, not official carbon accounting.
+          <span className="mx-2">•</span>
           Calculation Factors: DEFRA 2023, IEA Emission Factors v1.4
         </p>
       </footer>

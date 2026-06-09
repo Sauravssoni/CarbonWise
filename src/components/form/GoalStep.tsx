@@ -6,15 +6,37 @@ interface GoalStepProps {
 }
 
 const TARGETS: { val: ReductionTarget; label: string; details: string }[] = [
-  { val: 5, label: 'Standard (5% Off)', details: 'Basic optimization. Equivalent to setting thermostat 1°C lower.' },
-  { val: 10, label: 'Balanced (10% Off)', details: 'Sustainable changes, such as adopting one plant-forward lunch.' },
-  { val: 20, label: 'Committed (20% Off)', details: 'Substantial habit transformations. Avoids solo driving for local runs.' },
+  {
+    val: 5,
+    label: 'Standard (5% Off)',
+    details: 'Basic optimization. Equivalent to setting thermostat 1°C lower.',
+  },
+  {
+    val: 10,
+    label: 'Balanced (10% Off)',
+    details: 'Sustainable changes, such as adopting one plant-forward lunch.',
+  },
+  {
+    val: 20,
+    label: 'Committed (20% Off)',
+    details: 'Substantial habit transformations. Avoids solo driving for local runs.',
+  },
 ];
 
 const INTENSITY: { val: EffortLevel; label: string; icon: string; desc: string }[] = [
   { val: 'Easy', label: 'Easy Pace', icon: '🦦', desc: 'No-hassle micro-actions' },
-  { val: 'Balanced', label: 'Balanced Pace', icon: '🌿', desc: 'Conscious habits to build steady savings' },
-  { val: 'Aggressive', label: 'Aggressive Pace', icon: '🚀', desc: 'Bold substitutions for major structural reduction' },
+  {
+    val: 'Balanced',
+    label: 'Balanced Pace',
+    icon: '🌿',
+    desc: 'Conscious habits to build steady savings',
+  },
+  {
+    val: 'Aggressive',
+    label: 'Aggressive Pace',
+    icon: '🚀',
+    desc: 'Bold substitutions for major structural reduction',
+  },
 ];
 
 export default function GoalStep({ data, onChange }: GoalStepProps) {
@@ -26,9 +48,12 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
     <fieldset className="space-y-6 animate-fade-in border-none p-0 m-0">
       <legend className="sr-only">Step 5: Define Your Carbon Goal</legend>
       <div>
-        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Step 5: Define Your Carbon Goal</h3>
+        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">
+          Step 5: Define Your Carbon Goal
+        </h3>
         <p className="text-slate-400 text-xs mt-1">
-          Setting concrete targets boosts habit retention by 3x. Choose a manageable starting baseline.
+          Setting concrete targets boosts habit retention by 3x. Choose a manageable starting
+          baseline.
         </p>
       </div>
 
@@ -37,7 +62,11 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
         <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
           Emissions Reduction Goal <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="radiogroup" aria-label="Select target reduction">
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-3"
+          role="radiogroup"
+          aria-label="Select target reduction"
+        >
           {TARGETS.map((opt) => {
             const isSelected = currentTarget === opt.val;
             return (
@@ -54,7 +83,9 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
                 aria-checked={isSelected}
               >
                 <div className="font-bold text-slate-800 text-xs">{opt.label}</div>
-                <div className="text-xs text-slate-400 mt-1 flex-grow leading-relaxed">{opt.details}</div>
+                <div className="text-xs text-slate-400 mt-1 flex-grow leading-relaxed">
+                  {opt.details}
+                </div>
               </button>
             );
           })}
@@ -66,7 +97,11 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
         <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
           Conscious Commitment Level <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="radiogroup" aria-label="Select commitment level">
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-3"
+          role="radiogroup"
+          aria-label="Select commitment level"
+        >
           {INTENSITY.map((opt) => {
             const isSelected = currentEffort === opt.val;
             return (
@@ -84,7 +119,9 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
               >
                 <div className="font-bold text-slate-800 text-xs flex items-center justify-between w-full">
                   <span>{opt.label}</span>
-                  <span className="text-sm" aria-hidden="true">{opt.icon}</span>
+                  <span className="text-sm" aria-hidden="true">
+                    {opt.icon}
+                  </span>
                 </div>
                 <div className="text-xs text-slate-400 mt-1 leading-relaxed">{opt.desc}</div>
               </button>
@@ -95,8 +132,14 @@ export default function GoalStep({ data, onChange }: GoalStepProps) {
 
       {/* Optional Note */}
       <div className="space-y-2">
-        <label htmlFor="optional-notes" className="block text-xs font-bold text-slate-600 uppercase tracking-wider">
-          Optional Personal Motives <span className="text-slate-400 font-normal text-xs normal-case">(Maximum 200 characters)</span>
+        <label
+          htmlFor="optional-notes"
+          className="block text-xs font-bold text-slate-600 uppercase tracking-wider"
+        >
+          Optional Personal Motives{' '}
+          <span className="text-slate-400 font-normal text-xs normal-case">
+            (Maximum 200 characters)
+          </span>
         </label>
         <textarea
           id="optional-notes"

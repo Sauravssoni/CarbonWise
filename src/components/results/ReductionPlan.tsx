@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { FootprintInput, ActionItem } from '../../types';
+// No hooks needed here
+import { FootprintInput } from '../../types';
 import { generateReductionPlan } from '../../lib/recommendation-engine';
 import { completeAction, uncompleteAction, getLocalHistory } from '../../lib/storage';
 import { useToast } from '../ToastProvider';
@@ -12,20 +12,12 @@ interface ReductionPlanProps {
 
 export default function ReductionPlan({ input, onRefreshHistory }: ReductionPlanProps) {
   const { showToast } = useToast();
-  const [items, setItems] = useState<ActionItem[]>([]);
-
-  useEffect(() => {
-    const generated = generateReductionPlan(input);
-    const history = getLocalHistory();
-    
-    // Check which items are completed in storage
-    const itemsWithCompletion = generated.map((item) => ({
-      ...item,
-      completed: history.completedActionIds.includes(item.id),
-    }));
-    
-    setItems(itemsWithCompletion);
-  }, [input]);
+  const generated = generateReductionPlan(input);
+  const history = getLocalHistory();
+  const items = generated.map((item) => ({
+    ...item,
+    completed: history.completedActionIds.includes(item.id),
+  }));
 
   const handleToggleCompletion = (id: string) => {
     const history = getLocalHistory();
@@ -39,17 +31,15 @@ export default function ReductionPlan({ input, onRefreshHistory }: ReductionPlan
       showToast('Action saved. Small changes compound.', 'success');
     }
 
-    // Update local React state
-    setItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item))
-    );
     onRefreshHistory(); // trigger parent refresh
   };
 
   return (
     <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
       <div>
-        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">Your Reduction Plan</h3>
+        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-1">
+          Your Reduction Plan
+        </h3>
         <p className="text-xs text-slate-400">
           A targeted roadmap scaled according to your carbon contributors and daily goals.
         </p>
@@ -58,10 +48,26 @@ export default function ReductionPlan({ input, onRefreshHistory }: ReductionPlan
       <div className="space-y-4">
         {items.map((item, index) => {
           const typeTags = [
-            { label: 'Easiest Action', icon: Sparkles, color: 'text-emerald-700 bg-emerald-50 border border-emerald-100' },
-            { label: 'Highest Impact', icon: Trophy, color: 'text-slate-700 bg-slate-50 border border-slate-100' },
-            { label: 'Habit Consistency', icon: Flame, color: 'text-emerald-700 bg-emerald-50 border border-emerald-100' },
-          ][index] || { label: 'Action Tip', icon: Sparkles, color: 'text-slate-600 bg-slate-50 border border-slate-100' };
+            {
+              label: 'Easiest Action',
+              icon: Sparkles,
+              color: 'text-emerald-700 bg-emerald-50 border border-emerald-100',
+            },
+            {
+              label: 'Highest Impact',
+              icon: Trophy,
+              color: 'text-slate-700 bg-slate-50 border border-slate-100',
+            },
+            {
+              label: 'Habit Consistency',
+              icon: Flame,
+              color: 'text-emerald-700 bg-emerald-50 border border-emerald-100',
+            },
+          ][index] || {
+            label: 'Action Tip',
+            icon: Sparkles,
+            color: 'text-slate-600 bg-slate-50 border border-slate-100',
+          };
 
           const TagIcon = typeTags.icon;
 
@@ -77,7 +83,9 @@ export default function ReductionPlan({ input, onRefreshHistory }: ReductionPlan
               <div className="space-y-3 flex-1">
                 {/* Mode Tag label */}
                 <div className="flex items-center gap-2">
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg text-xs font-bold ${typeTags.color}`}>
+                  <span
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg text-xs font-bold ${typeTags.color}`}
+                  >
                     <TagIcon className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>{typeTags.label}</span>
                   </span>
@@ -86,9 +94,7 @@ export default function ReductionPlan({ input, onRefreshHistory }: ReductionPlan
                   </span>
                 </div>
                 {/* Description */}
-                <p className="text-sm font-semibold text-slate-800 leading-relaxed">
-                  {item.text}
-                </p>
+                <p className="text-sm font-semibold text-slate-800 leading-relaxed">{item.text}</p>
               </div>
 
               {/* Toggle switch Button */}

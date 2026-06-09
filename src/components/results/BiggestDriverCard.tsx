@@ -9,22 +9,26 @@ const INSIGHTS = {
   transport: {
     label: 'Transport Commuting',
     icon: Car,
-    details: 'Daily motor commuting distances or flights make this your largest impact source. Focus on public transit options, combining car trips, or carpooling.',
+    details:
+      'Daily motor commuting distances or flights make this your largest impact source. Focus on public transit options, combining car trips, or carpooling.',
   },
   energy: {
     label: 'Home Utilities',
     icon: Lightbulb,
-    details: 'Grid power footprint, divided across household metrics, is your primary source. Simple tweaks like cleaning AC filters or washing in cold water can make a major impact.',
+    details:
+      'Grid power footprint, divided across household metrics, is your primary source. Simple tweaks like cleaning AC filters or washing in cold water can make a major impact.',
   },
   food: {
     label: 'Nutrition & Diet',
     icon: Soup,
-    details: 'Heavy meat consumption or frequent food wastage drives this category. Swapping red meats for chicken, or planning zero-waste plant-forwards meals, significantly reduces this weight.',
+    details:
+      'Heavy meat consumption or frequent food wastage drives this category. Swapping red meats for chicken, or planning zero-waste plant-forwards meals, significantly reduces this weight.',
   },
   consumption: {
     label: 'Retail Consumption',
     icon: ShoppingBag,
-    details: 'Online deliveries and clothing purchases create substantial pre-consumer manufacturing carbon. Mending/repairing and consolidating deliveries is your absolute best route here.',
+    details:
+      'Online deliveries and clothing purchases create substantial pre-consumer manufacturing carbon. Mending/repairing and consolidating deliveries is your absolute best route here.',
   },
 } as const;
 
@@ -44,12 +48,13 @@ export default function BiggestDriverCard({ result }: BiggestDriverCardProps) {
             Analysis v2.1
           </span>
         </div>
-        
+
         <p className="text-base sm:text-lg font-semibold leading-snug mt-3">
           {config.label} is your leading source of emissions.
         </p>
         <p className="text-xs opacity-70 mt-2 font-sans leading-relaxed">
-          {config.details} Identifying this specific segment gives you immediate, strategic leverage.
+          {config.details} Identifying this specific segment gives you immediate, strategic
+          leverage.
         </p>
       </div>
 

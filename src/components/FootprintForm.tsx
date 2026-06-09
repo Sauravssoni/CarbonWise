@@ -35,7 +35,10 @@ const DEFAULT_FORM_DATA: FootprintInput = {
   optionalNote: '',
 };
 
-export default function FootprintForm({ onSubmitSuccess, onCancel, initialData }: FootprintFormProps) {
+export default function FootprintForm({
+  onSubmitSuccess,
+  initialData,
+}: FootprintFormProps) {
   const [step, setStep] = useState<number>(1);
   const [formData, setFormData] = useState<FootprintInput>({
     ...DEFAULT_FORM_DATA,
@@ -67,7 +70,7 @@ export default function FootprintForm({ onSubmitSuccess, onCancel, initialData }
         return;
       }
     }
-    
+
     setErrorMessages([]);
     setStep((prev) => Math.min(prev + 1, 5));
   };
@@ -128,10 +131,16 @@ export default function FootprintForm({ onSubmitSuccess, onCancel, initialData }
 
         {/* Validation Errors */}
         {errorMessages.length > 0 && (
-          <div className="p-4 bg-red-50 border border-red-150 rounded-2xl text-red-800 text-xs flex gap-3 mt-4" role="alert" aria-live="polite">
+          <div
+            className="p-4 bg-red-50 border border-red-150 rounded-2xl text-red-800 text-xs flex gap-3 mt-4"
+            role="alert"
+            aria-live="polite"
+          >
             <AlertCircle className="w-4 h-4 text-red-650 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold uppercase tracking-wider">Correct the following metrics inputs:</div>
+              <div className="font-bold uppercase tracking-wider">
+                Correct the following metrics inputs:
+              </div>
               <ul className="list-disc pl-4 mt-1.5 space-y-1 font-mono">
                 {errorMessages.map((msg, i) => (
                   <li key={i}>{msg}</li>

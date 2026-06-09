@@ -39,8 +39,8 @@ export interface FootprintInput {
 
 export interface CategoryBreakdown {
   transport: number; // kg CO2e
-  energy: number;    // kg CO2e
-  food: number;      // kg CO2e
+  energy: number; // kg CO2e
+  food: number; // kg CO2e
   consumption: number; // kg CO2e
 }
 
@@ -52,7 +52,7 @@ export interface CategoryPercentages {
 }
 
 export interface CarbonResult {
-  dailyTotal: number;  // kg CO2e
+  dailyTotal: number; // kg CO2e
   weeklyTotal: number; // kg CO2e
   monthlyTotal: number; // kg CO2e
   footprintBand: 'Light' | 'Moderate' | 'High' | 'Very High';

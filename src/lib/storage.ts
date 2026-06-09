@@ -27,8 +27,6 @@ function getSafeLocalStorage(): Storage | null {
   }
 }
 
-
-
 // In-Memory fallback for server environments or testing
 let memoryState: LocalHistory = { ...DEFAULT_STATE };
 
@@ -40,25 +38,25 @@ export function getLocalHistory(): LocalHistory {
   if (!storage) {
     return memoryState;
   }
-  
+
   try {
     const raw = storage.getItem(STORAGE_KEY);
     if (!raw) {
       return { ...DEFAULT_STATE, checkIns: [], completedActionIds: [], customActions: [] };
     }
     const parsed = JSON.parse(raw);
-    
+
     // Integrity checks for corrupt data
     if (!parsed || typeof parsed !== 'object') {
       return { ...DEFAULT_STATE, checkIns: [], completedActionIds: [], customActions: [] };
     }
-    
+
     return {
       checkIns: Array.isArray(parsed.checkIns) ? parsed.checkIns : [],
       completedActionIds: Array.isArray(parsed.completedActionIds) ? parsed.completedActionIds : [],
       customActions: Array.isArray(parsed.customActions) ? parsed.customActions : [],
     };
-  } catch (err) {
+  } catch (_err) {
     // Graceful recovery from corrupt storage formats
     return { ...DEFAULT_STATE, checkIns: [], completedActionIds: [], customActions: [] };
   }
@@ -75,7 +73,7 @@ export function saveLocalHistory(state: LocalHistory): void {
   }
   try {
     storage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch (err) {
+  } catch (_err) {
     // Fail-safe
   }
 }
@@ -85,14 +83,14 @@ export function saveLocalHistory(state: LocalHistory): void {
  */
 export function addCheckIn(input: FootprintInput, result: CarbonResult): CheckInRecord {
   const history = getLocalHistory();
-  
+
   const newRecord: CheckInRecord = {
     id: `chk_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
     timestamp: new Date().toISOString(),
     input: JSON.parse(JSON.stringify(input)),
     result: JSON.parse(JSON.stringify(result)),
   };
-  
+
   history.checkIns.unshift(newRecord); // Prepend so most recent is first
   saveLocalHistory(history);
   return newRecord;
@@ -114,7 +112,7 @@ export function completeAction(actionId: string): void {
  */
 export function uncompleteAction(actionId: string): void {
   const history = getLocalHistory();
-  history.completedActionIds = history.completedActionIds.filter(id => id !== actionId);
+  history.completedActionIds = history.completedActionIds.filter((id) => id !== actionId);
   saveLocalHistory(history);
 }
 
@@ -127,7 +125,7 @@ export function clearStorageData(): void {
     if (storage) {
       storage.removeItem(STORAGE_KEY);
     }
-  } catch (err) {
+  } catch (_err) {
     // Fail-safe
   }
   memoryState = {
@@ -143,7 +141,7 @@ export function clearStorageData(): void {
  */
 export function getReductionStreak(): number {
   const history = getLocalHistory();
-  
+
   // Return the count of successfully saved green action completions
   return history.completedActionIds.length;
 }
@@ -154,32 +152,32 @@ export function getReductionStreak(): number {
 export function getBestCategoryImproved(): string {
   const history = getLocalHistory();
   if (history.checkIns.length < 2) return 'None (Keep checking in)';
-  
+
   // Compare oldest vs newest check-in to find the category with the largest drop in emissions
   const newest = history.checkIns[0].result.breakdown;
   const oldest = history.checkIns[history.checkIns.length - 1].result.breakdown;
-  
+
   const differences = {
     transport: oldest.transport - newest.transport,
     energy: oldest.energy - newest.energy,
     food: oldest.food - newest.food,
     consumption: oldest.consumption - newest.consumption,
   };
-  
+
   let bestCat = 'None';
   let maxReduction = 0;
-  
+
   for (const [cat, val] of Object.entries(differences)) {
     if (val > maxReduction) {
       maxReduction = val;
       bestCat = cat;
     }
   }
-  
+
   if (bestCat === 'None' || maxReduction <= 0.05) {
     return 'Stable (Steady Progress)';
   }
-  
+
   // Format to standard category names
   return bestCat.charAt(0).toUpperCase() + bestCat.slice(1);
 }

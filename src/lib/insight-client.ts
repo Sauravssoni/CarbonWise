@@ -28,8 +28,10 @@ export function buildLocalInsight(input: FootprintInput, result: CarbonResult): 
     return {
       source: 'local_fallback',
       personalInsight: `Your transport choices represent your biggest leverage point, driven by a travel total of ${input.distancePerDayKm || 0} km/day.`,
-      motivationalNudge: 'Every active carbon-free trip you take helps avoid harmful greenhouse emissions. Small actions build sustainable compound savings!',
-      customAction: 'Try carpooling or taking bus/metro transit for your primary commute on 2 days this week.',
+      motivationalNudge:
+        'Every active carbon-free trip you take helps avoid harmful greenhouse emissions. Small actions build sustainable compound savings!',
+      customAction:
+        'Try carpooling or taking bus/metro transit for your primary commute on 2 days this week.',
     };
   }
 
@@ -37,17 +39,22 @@ export function buildLocalInsight(input: FootprintInput, result: CarbonResult): 
     return {
       source: 'local_fallback',
       personalInsight: `Home energy utility usage (${input.electricityKwhMonthly || 0} kWh) partitioned per capita represents your biggest footprint component.`,
-      motivationalNudge: 'Trimming standby draws and keeping cooling efficiency high protects both our climate and household finances.',
-      customAction: 'Reduce home AC use by one hour and wash your next batch of laundry in cold water.',
+      motivationalNudge:
+        'Trimming standby draws and keeping cooling efficiency high protects both our climate and household finances.',
+      customAction:
+        'Reduce home AC use by one hour and wash your next batch of laundry in cold water.',
     };
   }
 
   if (driver === 'consumption') {
     return {
       source: 'local_fallback',
-      personalInsight: 'Manufacturing and shipping your monthly deliveries and clothing represents a heavy pre-consumer carbon footprint.',
-      motivationalNudge: 'Repairing and consolidating orders directly avoids energy-intensive manufacturing cycles. Repair first, purchase second!',
-      customAction: 'Postpone buying any non-urgent retail apparel and combine your next online orders into one batch delivery limit.',
+      personalInsight:
+        'Manufacturing and shipping your monthly deliveries and clothing represents a heavy pre-consumer carbon footprint.',
+      motivationalNudge:
+        'Repairing and consolidating orders directly avoids energy-intensive manufacturing cycles. Repair first, purchase second!',
+      customAction:
+        'Postpone buying any non-urgent retail apparel and combine your next online orders into one batch delivery limit.',
     };
   }
 
@@ -55,7 +62,8 @@ export function buildLocalInsight(input: FootprintInput, result: CarbonResult): 
   return {
     source: 'local_fallback',
     personalInsight: `Your nutrition style (${input.dietType}) and eating cadence are your principal footprint contributors.`,
-    motivationalNudge: 'Plant-forward recipes use a fraction of the land, water, and resources of conventional ingredients. Good cooking, good impact.',
+    motivationalNudge:
+      'Plant-forward recipes use a fraction of the land, water, and resources of conventional ingredients. Good cooking, good impact.',
     customAction: 'Swap meat for a completely vegetable-forward dinner on three days this week.',
   };
 }

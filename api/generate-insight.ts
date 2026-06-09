@@ -27,10 +27,10 @@ function checkRateLimit(ip: string): boolean {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     // Set security headers
-    res.setHeader("X-Content-Type-Options", "nosniff");
-    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-    res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
-    res.setHeader("X-Frame-Options", "DENY");
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+    res.setHeader('X-Frame-Options', 'DENY');
 
     // 1. Only allow POST
     if (req.method !== 'POST') {
@@ -39,7 +39,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // 2. Extract IP and verify rate limit
-    const ip = (req.headers['x-forwarded-for'] as string) || (req.socket?.remoteAddress as string) || 'unknown';
+    const ip =
+      (req.headers['x-forwarded-for'] as string) ||
+      (req.socket?.remoteAddress as string) ||
+      'unknown';
     if (!checkRateLimit(ip)) {
       return res.status(429).json({
         error: 'Too many requests. Please wait before trying again.',
@@ -47,7 +50,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const payload = req.body;
-    
+
     // Check if body exists and is object
     if (!payload || typeof payload !== 'object') {
       return res.status(400).json({ error: 'Invalid body payload.' });
@@ -77,7 +80,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const aiResponse = await getAiInsight(input, result, apiKey);
 
     return res.status(200).json(aiResponse);
-  } catch (error: unknown) {
+  } catch (_error) {
     // Prevent system stack trace leakage
     return res.status(500).json({
       error: 'Internal processing failure.',

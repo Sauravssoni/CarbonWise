@@ -37,7 +37,9 @@ export default function AlignmentCards() {
               <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-50 border border-slate-100 mb-4 mx-auto sm:mx-0">
                 <Icon className="w-5 h-5 text-emerald-600" />
               </div>
-              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest mb-2">{item.title}</h4>
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest mb-2">
+                {item.title}
+              </h4>
               <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
             </div>
           </div>

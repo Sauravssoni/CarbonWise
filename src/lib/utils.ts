@@ -17,4 +17,3 @@ export function formatCO2(kgValue: number): string {
   if (isNaN(kgValue)) return '0.0 kg CO2e';
   return `${kgValue.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} kg CO2e`;
 }
-

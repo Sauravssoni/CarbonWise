@@ -86,9 +86,9 @@ describe('Recommendations and Actions Selection Engine', () => {
 
     const plan = generateReductionPlan(input);
     expect(plan.length).toBe(3);
-    
+
     // One of the steps should prioritize transport
-    const hasTransport = plan.some(act => act.category === 'transport');
+    const hasTransport = plan.some((act) => act.category === 'transport');
     expect(hasTransport).toBe(true);
   });
 });

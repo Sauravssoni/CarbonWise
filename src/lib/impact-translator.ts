@@ -17,7 +17,7 @@ export interface RelatableEquivalents {
  */
 export function translateCarbonImpact(kgCO2e: number): RelatableEquivalents {
   const safeKg = Math.max(0, kgCO2e);
-  
+
   return {
     carKmAvoided: Math.round(safeKg * TRANSLATION_FACTORS.carKmAvoided * 10) / 10,
     smartphoneCharges: Math.round(safeKg * TRANSLATION_FACTORS.smartphoneCharges),

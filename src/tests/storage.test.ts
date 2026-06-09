@@ -5,12 +5,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
   getLocalHistory,
-  saveLocalHistory,
   addCheckIn,
   completeAction,
   clearStorageData,
   getReductionStreak,
-  getBestCategoryImproved,
 } from '../lib/storage';
 import { FootprintInput, CarbonResult } from '../types';
 
@@ -56,7 +54,7 @@ describe('Local Profile Storage and Retention', () => {
 
     const record = addCheckIn(mockInput, mockResult);
     expect(record.id).toBeDefined();
-    
+
     const history = getLocalHistory();
     expect(history.checkIns.length).toBe(1);
     expect(history.checkIns[0].result.dailyTotal).toBe(1.0);
@@ -71,7 +69,7 @@ describe('Local Profile Storage and Retention', () => {
 
   it('recovers from empty or malformed localStorage payloads', () => {
     localStorage.setItem('carbonwise_v1', '{malformed: "json"');
-    
+
     // getLocalHistory should catch the parse error and return default
     const history = getLocalHistory();
     expect(history.checkIns).toEqual([]);

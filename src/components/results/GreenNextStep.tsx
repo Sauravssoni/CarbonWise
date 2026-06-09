@@ -1,9 +1,9 @@
-import { FootprintInput, ActionItem } from '../../types';
+import { FootprintInput } from '../../types';
 import { generateGreenNextStep } from '../../lib/recommendation-engine';
 import { completeAction, getLocalHistory } from '../../lib/storage';
 import { useToast } from '../ToastProvider';
 import { Leaf, Check } from 'lucide-react';
-import { useState, useEffect } from 'react';
+// No hooks needed here
 
 interface GreenNextStepProps {
   input: FootprintInput;
@@ -12,28 +12,16 @@ interface GreenNextStepProps {
 
 export default function GreenNextStep({ input, onRefreshHistory }: GreenNextStepProps) {
   const { showToast } = useToast();
-  const [action, setAction] = useState<ActionItem | null>(null);
-
-  useEffect(() => {
-    // Generate the personalized green action item based on input values
-    const generated = generateGreenNextStep(input);
-    
-    // Check if it is already completed in current local history
-    const history = getLocalHistory();
-    const isDone = history.completedActionIds.includes(generated.id);
-    
-    setAction({ ...generated, completed: isDone });
-  }, [input]);
-
-  if (!action) return null;
+  const generated = generateGreenNextStep(input);
+  const history = getLocalHistory();
+  const isDone = history.completedActionIds.includes(generated.id);
+  const action = { ...generated, completed: isDone };
 
   const handleCommit = () => {
     if (!action) return;
-    
+
     // Persist completion
     completeAction(action.id);
-    setAction((prev) => prev ? { ...prev, completed: true } : null);
-    
     // Trigger Success Callback Toasts
     showToast('Action saved. Small changes compound.');
     onRefreshHistory(); // update streak or progress widgets
@@ -47,10 +35,8 @@ export default function GreenNextStep({ input, onRefreshHistory }: GreenNextStep
         <span className="text-xs font-bold uppercase tracking-[0.2em] opacity-85">
           One Green Next Step
         </span>
-        <h3 className="text-xl sm:text-2xl font-light mt-2 leading-tight">
-          {action.text}
-        </h3>
-        
+        <h3 className="text-xl sm:text-2xl font-light mt-2 leading-tight">{action.text}</h3>
+
         {/* Dynamic tagging system */}
         <div className="mt-4 flex flex-wrap gap-2">
           <span className="px-2 py-1 bg-white/20 rounded text-xs font-bold uppercase tracking-wider">
