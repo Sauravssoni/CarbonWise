@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { getDeterministicInsight, getAiInsight } from '../lib/ai.js';
-import { FootprintInput, CarbonResult } from '../types.js';
+import { getDeterministicInsight, getAiInsight } from '../lib/ai';
+import { FootprintInput, CarbonResult } from '../types';
 
 const mockInput: FootprintInput = {
   commuteMode: 'Car',
