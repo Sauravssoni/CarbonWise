@@ -7,7 +7,7 @@
  * 3. Never throws, never shows errors to the user
  */
 
-import { FootprintInput, CarbonResult, AIResponse } from '../types';
+import { FootprintInput, CarbonResult, AIResponse } from '../types.js';
 
 /** Response shape returned by both the API and local fallback */
 export interface InsightResponse extends AIResponse {

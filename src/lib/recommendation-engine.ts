@@ -2,7 +2,7 @@
  * CarbonWise - Recommendation and Action Planner
  */
 
-import { FootprintInput, ActionItem } from '../types';
+import { FootprintInput, ActionItem } from '../types.js';
 
 /**
  * Generates the primary "One Green Next Step" based on the user's footprint profiles.

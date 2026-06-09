@@ -1,9 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { FootprintSchema } from '../src/lib/validation';
-import { calculateFootprint } from '../src/lib/carbon-engine';
-import { getAiInsight } from '../src/lib/ai';
-import { sanitizeString } from '../src/lib/sanitize';
-import type { FootprintInput } from '../src/types';
+import { FootprintSchema } from '../src/lib/validation.js';
+import { calculateFootprint } from '../src/lib/carbon-engine.js';
+import { getAiInsight } from '../src/lib/ai.js';
+import { sanitizeString } from '../src/lib/sanitize.js';
+import type { FootprintInput } from '../src/types.js';
 
 // Best-effort in-memory rate limiter for serverless environment
 const ipCache = new Map<string, { count: number; resetTime: number }>();

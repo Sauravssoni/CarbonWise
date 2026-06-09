@@ -2,7 +2,7 @@
  * CarbonWise - Deterministic Carbon Engine
  */
 
-import type { FootprintInput, CarbonResult, CategoryBreakdown, CategoryPercentages } from '../types';
+import type { FootprintInput, CarbonResult, CategoryBreakdown, CategoryPercentages } from '../types.js';
 import {
   EMISSION_FACTORS_TRANSPORT,
   EMISSION_FACTOR_FLIGHT,
@@ -15,8 +15,8 @@ import {
   EMISSION_FACTOR_CLOTHING,
   EMISSION_FACTORS_RECYCLING,
   FOOTPRINT_BANDS,
-} from './constants';
-import { clampValue } from './sanitize';
+} from './constants.js';
+import { clampValue } from './sanitize.js';
 
 /**
  * Calculates daily Transport emissions in kg CO2e

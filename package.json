@@ -2,8 +2,8 @@
   "name": "carbonwise",
   "private": true,
   "version": "1.0.0",
-  "description": "Carbon footprint awareness platform — understand, track, and reduce your daily carbon emissions.",
   "type": "module",
+  "description": "Carbon footprint awareness platform — understand, track, and reduce your daily carbon emissions.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -2,7 +2,7 @@
  * CarbonWise - Relatable Carbon Impact Translator
  */
 
-import { TRANSLATION_FACTORS } from './constants';
+import { TRANSLATION_FACTORS } from './constants.js';
 
 export interface RelatableEquivalents {
   carKmAvoided: number;
