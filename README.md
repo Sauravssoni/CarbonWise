@@ -1,6 +1,12 @@
 # CarbonWise 🚀🌱
 
-**CarbonWise** is a high-fidelity, educational carbon footprint awareness and tracking platform built using React, Vite, Express, and TypeScript. It is designed to help individuals understand, track, and reduce their approximate carbon footprint through transparent, deterministic calculations and personalized generative AI insights with privacy-first, device-local storage.
+**CarbonWise** is a high-fidelity, educational carbon footprint awareness and tracking platform built using React, Vite, Vercel Serverless, and TypeScript. It is designed to help individuals understand, track, and reduce their approximate carbon footprint through transparent, deterministic calculations and personalized generative AI insights with privacy-first, device-local storage.
+
+---
+
+## 📌 Deployed Site & API Verification
+* **Frontend Site**: [https://carbon-wise-eight.vercel.app/](https://carbon-wise-eight.vercel.app/)
+* **API Route**: `POST https://carbon-wise-eight.vercel.app/api/generate-insight`
 
 ---
 
@@ -21,7 +27,7 @@
   - **Translation Engine**: Translates raw carbon metrics into relatable equivalents.
   - **Action Recommendations**: Ranks next steps dynamically based on effort levels and the user's primary emission driver.
   - **Storage Protocol**: Manages local progress safely without external state side-effects.
-  - **Express API Endpoint**: Secure server route runs custom rate-limiting and inputs sanitization before calling Gemini.
+  - **Serverless API Route**: On Vercel, CarbonWise uses a Vercel Serverless Function at `/api/generate-insight` for optional AI insight generation. The frontend is a Vite static app. The core carbon engine and deterministic recommendations work without Gemini.
 * **Assumptions**:
   - Educational and approximate estimates, not formal greenhouse gas accounting or compliance-ready auditing.
   - No remote database is utilized because CarbonWise does not collect accounts, emails, names, addresses, or precise location data. User check-ins and completed actions stay on the device.
@@ -31,12 +37,12 @@
 
 ## 🔒 Security Hardening Controls
 
-* **Zero Client-Side Secret Leakage**: API keys are isolated on the Node.js backend.
+* **Zero Client-Side Secret Leakage**: API keys remain securely on the server-side environment variables on Vercel.
 * **Inbound Telemetry Sanitization**: Custom string fields are capped at 200 characters and HTML-escaped.
 * **Numerical Bounds Clamping**: Validation boundaries block buffer overflows and extreme numbers (e.g., commute capped at 1,000 km/day).
-* **Express Hardening**: Security headers set dynamically (`X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`, and `X-Frame-Options: DENY` in production / `SAMEORIGIN` in sandbox development).
-* **Payload Limit**: JSON body limit restricted to 10kb to avoid memory exhaust patterns.
-* **IP Rate Limiting**: Capped at 15 check-ins per IP per minute.
+* **Vercel Functions Security Headers**: Set dynamically on Vercel (`X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`, and `X-Frame-Options: DENY`).
+* **Payload Limit**: Body parsed safely under typical Serverless limits.
+* **IP Rate Limiting**: Best-effort in-memory cache rate-limiting capped at 15 check-ins per IP per minute.
 * **Zero PII Surface**: No usernames, emails, OAuth tokens, databases, or cookies are stored.
 
 ---
@@ -64,21 +70,21 @@ npm install
 ```
 
 ### Run Project Dev Environment
-Boots full-stack Express server wrapping Vite SPA:
+Boots standard Vite dev server locally:
 ```bash
 npm run dev
 ```
 
-### Build Production Bundle
-Builds Vite assets and compiles Express backend:
+### Run Project with Local Serverless Functions
+To test serverless functions locally alongside Vite:
 ```bash
-npm run build
+npx vercel dev
 ```
 
-### Launch Production Server
-Launches the compiled server:
+### Build Production Bundle
+Builds Vite assets:
 ```bash
-npm start
+npm run build
 ```
 
 ---
@@ -95,7 +101,7 @@ npm run test
 
 ## ⚙️ Environment Variables
 
-Copy `.env.example` to `.env`:
+Set in Vercel or local `.env`:
 ```bash
 GEMINI_API_KEY=
 ```
