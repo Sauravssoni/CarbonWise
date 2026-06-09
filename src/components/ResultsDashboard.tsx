@@ -9,6 +9,7 @@ import ReductionPlan from './results/ReductionPlan';
 import ImpactTranslator from './results/ImpactTranslator';
 import ProgressDashboard from './results/ProgressDashboard';
 import CalculationTransparency from './results/CalculationTransparency';
+import { ToastProvider, useToast } from './ToastProvider';
 import { Sparkles, ArrowLeft, RefreshCw } from 'lucide-react';
 
 interface ResultsDashboardProps {
@@ -28,6 +29,7 @@ export default function ResultsDashboard({
 }: ResultsDashboardProps) {
   const [aiInsight, setAiInsight] = useState<AIResponse & { source?: string } | null>(null);
   const [loadingInsight, setLoadingInsight] = useState<boolean>(false);
+  const { showToast } = useToast();
 
   useEffect(() => {
     async function loadSpeechInsight() {
@@ -49,16 +51,19 @@ export default function ResultsDashboard({
             customAction: data.customAction,
             source: data.source,
           });
+        } else {
+          const errData = await response.json().catch(() => ({}));
+          showToast(errData.message || 'Could not fetch personalized AI insights.', 'error');
         }
       } catch (err) {
-        // Fallback or failures handled gracefully
+        showToast('Network issue: falling back to local deterministic insights.', 'info');
       } finally {
         setLoadingInsight(false);
       }
     }
 
     loadSpeechInsight();
-  }, [input]);
+  }, [input, showToast]);
 
   return (
     <div className="space-y-6 select-none animate-fade-in">

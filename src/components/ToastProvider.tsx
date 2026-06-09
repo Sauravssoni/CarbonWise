@@ -1,15 +1,15 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { CheckCircle2, X } from 'lucide-react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
+import { CheckCircle2, AlertCircle, Info, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 
 interface Toast {
   id: string;
   message: string;
-  type: 'success' | 'info';
+  type: 'success' | 'info' | 'error';
 }
 
 interface ToastContextType {
-  showToast: (message: string, type?: 'success' | 'info') => void;
+  showToast: (message: string, type?: 'success' | 'info' | 'error') => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -17,7 +17,7 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const showToast = useCallback((message: string, type: 'success' | 'info' = 'success') => {
+  const showToast = useCallback((message: string, type: 'success' | 'info' | 'error' = 'success') => {
     const id = Math.random().toString(36).slice(2, 9);
     setToasts((prev) => [...prev, { id, message, type }]);
 
@@ -47,7 +47,15 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               className="pointer-events-auto flex items-start gap-3 bg-neutral-900 border border-neutral-800 text-white rounded-xl p-4 shadow-xl"
             >
-              <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+              {toast.type === 'success' && (
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+              )}
+              {toast.type === 'error' && (
+                <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+              )}
+              {toast.type === 'info' && (
+                <Info className="w-5 h-5 text-sky-500 shrink-0 mt-0.5" />
+              )}
               <div className="flex-1 text-sm font-medium pr-2 text-neutral-200">
                 {toast.message}
               </div>
